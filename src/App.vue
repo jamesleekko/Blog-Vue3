@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import MyHeaderVue from './components/MyHeader.vue';
-import MyMainVue from './components/MyMain.vue';
+import MyHeaderVue from '~/components/MyHeader.vue';
+import MyMainVue from '~/components/MyMain.vue';
 </script>
 
 <template>

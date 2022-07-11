@@ -1,2 +1,56 @@
-$base-color: #ff9d00;
 $h4-color: #8800ff;
+@mixin common-transition() {
+  transition-duration: 0.2s;
+}
+
+.header-con{
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: transparent;
+
+  .header-left{
+    background: url(~/assets/images/header-left.png) no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 100px;
+  }
+
+  .header-right{
+    width: 100px;
+  }
+
+  .header-tabs{
+    display: inline-block;
+
+    .header-tabs-item{
+      @include common-transition();
+      height: 54px;
+      line-height: 54px;
+      background-color: rgba(255, 157, 0, 0.534);
+      width: 88px;
+      display: inline-block;
+      text-align: center;
+      font-size: 16px;
+      color: #fff;
+
+      &:hover {
+        background-color: #8800ff5d;
+      }
+
+      &.active{
+        background-color: #8800ff;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.index-gallery{
+  width: 100%;
+  height: 100vw;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
