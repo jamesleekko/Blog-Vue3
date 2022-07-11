@@ -8,11 +8,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@rollup/plugin-inject": "^4.0.4",
     "animate.css": "^4.1.1",
     "element-plus": "^2.2.8",
     "jquery": "^3.6.0",
     "vue": "^3.2.25",
-    "vue-router": "^4.1.2"
+    "vue-router": "^4.1.2",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.3",

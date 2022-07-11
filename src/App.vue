@@ -18,7 +18,7 @@ import MyMainVue from '~/components/MyMain.vue';
 </template>
 
 <style lang="scss">
-// @use './theme/styles.scss';
+// @use './styles/styles.scss';
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
