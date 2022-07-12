@@ -24,13 +24,13 @@ function goAboutMe() {
   </div>
   <div class="header-tabs">
     <div class="header-tabs-item" @click="goIndex()">
-      首页
+      <font-awesome-icon icon="fa-solid fa-monument" /> 首页
     </div>
     <div class="header-tabs-item" @click="">
-      归档
+      <font-awesome-icon icon="fa-solid fa-box-archive" /> 归档
     </div>
     <div class="header-tabs-item" @click="goAboutMe()">
-      关于
+      <font-awesome-icon icon="fa-solid fa-user-astronaut" /> 关于
     </div>
   </div>
   <div class="header-right">
