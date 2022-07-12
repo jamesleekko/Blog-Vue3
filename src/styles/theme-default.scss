@@ -11,14 +11,14 @@ $h4-color: #8800ff;
   position: fixed;
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: transparent;
 
   .header-left{
     background: url(~/assets/images/header-left.png) no-repeat;
-    background-position: center;
-    background-size: contain;
-    width: 100px;
+    background-position: left;
+    background-size: cover;
+    width: 200px;
   }
 
   .header-right{
@@ -52,9 +52,11 @@ $h4-color: #8800ff;
 }
 
 .index-gallery{
-  width: 100%;
-  height: 100vw;
-  background-size: cover;
+  width: calc(100% + 40px);
+  height: 100vh;
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
+  margin: -20px;
+  margin-bottom: 0;
 }
