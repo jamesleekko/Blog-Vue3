@@ -14,9 +14,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import specific icons */
-import { faUserSecret, faMonument, faBoxArchive, faUserAstronaut } from '@fortawesome/free-solid-svg-icons'
+import { faUserSecret, faMonument, faBoxArchive, faUserAstronaut, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons'
 /* add icons to the library */
-library.add(faUserSecret, faMonument, faBoxArchive, faUserAstronaut)
+library.add(faUserSecret, faMonument, faBoxArchive, faUserAstronaut, faWandMagicSparkles)
 
 import router from '~/assets/plugins/router/vue-router'
 import store from '~/assets/plugins/vuex/vuex'

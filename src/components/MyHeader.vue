@@ -41,6 +41,9 @@ function handleScroll() {
       <div class="header-tabs-item" @click="">
         <font-awesome-icon icon="fa-solid fa-box-archive" /> 归档
       </div>
+      <div class="header-tabs-item" @click="">
+        <font-awesome-icon icon="fa-solid fa-wand-magic-sparkles" /> 留言板
+      </div>
       <div class="header-tabs-item" @click="goAboutMe()">
         <font-awesome-icon icon="fa-solid fa-user-astronaut" /> 关于
       </div>
