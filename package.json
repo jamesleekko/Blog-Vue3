@@ -17,9 +17,10 @@
     "animate.css": "^4.1.1",
     "element-plus": "^2.2.8",
     "jquery": "^3.6.0",
+    "pinia": "^2.0.16",
     "vue": "^3.2.25",
     "vue-router": "^4.1.2",
-    "vuex": "^4.0.2"
+    "vue3-lazyload": "^0.3.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.3",

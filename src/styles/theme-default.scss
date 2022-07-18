@@ -128,7 +128,8 @@ $h4-color: #8800ff;
   }
 
   .header-right {
-    width: 100px;
+    width: 200px;
+    text-align: right;
   }
 
   .header-tabs {
@@ -172,6 +173,7 @@ $h4-color: #8800ff;
   background-size    : cover;
   background-position: center;
   background-repeat  : no-repeat;
+  background-attachment: fixed;
   margin             : -20px;
   margin-bottom      : 0;
   position           : relative;
@@ -199,7 +201,7 @@ $h4-color: #8800ff;
     .title-big {
       font-size  : 80px;
       font-family: Ubuntu, sans-serif;
-      font-style: italic;
+      font-style : italic;
 
       &:hover {}
     }

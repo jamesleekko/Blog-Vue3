@@ -1,20 +1,20 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
-import store from '~/assets/plugins/vuex/vuex'
-import banner1 from '~/assets/images/gallery/index/index-banner1.jpg'
+import { useGlobalStore } from '~/assets/plugins/pinia/global-store';
 
+import banner1 from '~/assets/images/gallery/index/index-banner1.jpg'
+const banners = [banner1]
+
+const store = useGlobalStore()
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
 
-const count = ref(1)
-
-const curPictureNum = Math.floor(Math.random() * (store.state.galleryTotal - 1)) + Number(1);
-const curPictureUrl = new URL('/assets/images/gallery/index/index-banner' + curPictureNum + '.jpg', import.meta.url).href;
+const curPictureNum = Math.floor(Math.random() * (store.totalGallery - 1)) + Number(1);
 
 onMounted(() => {
-  console.log('show gallery ele', $('.index-gallery'))
-  $('.index-gallery').css('background-image', `url(${banner1})`)
+  console.log('show gallery ele', $('.index-gallery'), curPictureNum)
+  $('.index-gallery').css('background-image', `url(${banners[curPictureNum - 1]})`)
 })
 </script>
 
@@ -25,7 +25,7 @@ onMounted(() => {
       <div class="title-big glitch" data-text="Hustle,Hustle!">Hustle,Hustle!</div>
     </div>
   </div>
-  <div style="height: 40px;">fdsjfiods</div>
+  <div style="height: 100vh; scroll-snap-align: start;">fdsjfiods</div>
 </template>
 
 <style lang="scss" scoped>
