@@ -16,6 +16,7 @@ onMounted(() => {
   console.log('show gallery ele', $('.index-gallery'), curPictureNum)
   $('.index-gallery').css('background-image', `url(${banners[curPictureNum - 1]})`)
 })
+
 </script>
 
 <template>
@@ -25,7 +26,8 @@ onMounted(() => {
       <div class="title-big glitch" data-text="Hustle,Hustle!">Hustle,Hustle!</div>
     </div>
   </div>
-  <div style="height: 100vh; scroll-snap-align: start;">fdsjfiods</div>
+  <div style="height: 1000px; scroll-snap-align: start;" id="test3d">
+  </div>
 </template>
 
 <style lang="scss" scoped>
