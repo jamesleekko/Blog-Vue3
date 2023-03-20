@@ -7,10 +7,10 @@ $h4-color: #8800ff;
 }
 
 .glitch {
-  position      : relative;
+  position: relative;
   mix-blend-mode: lighten;
-  overflow      : hidden;
-  white-space   : nowrap;
+  overflow: hidden;
+  white-space: nowrap;
 
   &:hover {
     &::before {
@@ -24,24 +24,24 @@ $h4-color: #8800ff;
   }
 
   &::before {
-    content    : attr(data-text);
-    position   : absolute;
-    top        : 0;
-    width      : 100%;
-    background : rgba(0, 0, 0, 0);
-    clip       : rect(0, 0, 0, 0);
-    left       : -1px;
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0);
+    clip: rect(0, 0, 0, 0);
+    left: -1px;
     text-shadow: 4px 0 #ff3f1a;
   }
 
   &::after {
-    content    : attr(data-text);
-    position   : absolute;
-    top        : 0;
-    width      : 100%;
-    background : rgba(0, 0, 0, 0);
-    clip       : rect(0, 0, 0, 0);
-    left       : 1px;
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0);
+    clip: rect(0, 0, 0, 0);
+    left: 1px;
     text-shadow: -5px 0 #00a7e0;
   }
 }
@@ -70,31 +70,31 @@ $h4-color: #8800ff;
 
 @keyframes glitch-loop-2 {
   0% {
-    top : -1px;
+    top: -1px;
     left: 1px;
     clip: rect(65px, 9999px, 119px, 0)
   }
 
   25% {
-    top : -6px;
+    top: -6px;
     left: 4px;
     clip: rect(79px, 9999px, 19px, 0)
   }
 
   50% {
-    top : -3px;
+    top: -3px;
     left: 2px;
     clip: rect(68px, 9999px, 11px, 0)
   }
 
   75% {
-    top : 0;
+    top: 0;
     left: -4px;
     clip: rect(95px, 9999px, 53px, 0)
   }
 
   100% {
-    top : -1px;
+    top: -1px;
     left: -1px;
     clip: rect(31px, 9999px, 149px, 0)
   }
@@ -102,29 +102,29 @@ $h4-color: #8800ff;
 
 .el-header {
   position: fixed;
-  z-index : 2;
+  z-index: 2;
 }
 
 .header-con {
-  position       : fixed;
-  width          : 100%;
-  display        : flex;
+  position: fixed;
+  width: 100%;
+  display: flex;
   justify-content: space-between;
-  background     : transparent;
-  color          : #fff;
+  background: transparent;
+  color: #fff;
   @include common-transition();
 
   &.onTop {
     background: rgba(255, 255, 255, .95);
     box-shadow: 0 1px 40px -8px rgb(0 0 0 / 50%);
-    color     : #333;
+    color: #333;
   }
 
   .header-left {
-    background         : url(~/assets/images/header-left.png) no-repeat;
+    background: url(~/assets/images/header-left.png) no-repeat;
     background-position: left;
-    background-size    : cover;
-    width              : 200px;
+    background-size: cover;
+    width: 200px;
   }
 
   .header-right {
@@ -137,14 +137,14 @@ $h4-color: #8800ff;
 
     .header-tabs-item {
       @include common-transition();
-      height     : 54px;
+      height: 54px;
       line-height: 54px;
-      width      : 88px;
-      display    : inline-block;
-      position   : relative;
-      text-align : center;
-      font-size  : 16px;
-      cursor     : pointer;
+      width: 88px;
+      display: inline-block;
+      position: relative;
+      text-align: center;
+      font-size: 16px;
+      cursor: pointer;
 
       &:hover {
 
@@ -155,12 +155,12 @@ $h4-color: #8800ff;
 
       &::after {
         @include common-transition();
-        width     : 0;
-        content   : '';
-        position  : absolute;
-        bottom    : 0;
-        left      : 0;
-        height    : 3px;
+        width: 0;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 3px;
         background: #8800ff;
       }
     }
@@ -168,40 +168,40 @@ $h4-color: #8800ff;
 }
 
 .index-gallery {
-  width              : calc(100% + 40px);
-  height             : 100vh;
-  background-size    : cover;
+  width: calc(100% + 40px);
+  height: 100vh;
+  background-size: cover;
   background-position: center;
-  background-repeat  : no-repeat;
+  background-repeat: no-repeat;
   background-attachment: fixed;
-  margin             : -20px;
-  margin-bottom      : 0;
-  position           : relative;
+  margin: -20px;
+  margin-bottom: 0;
+  position: relative;
 
   &::before {
-    background-image     : url(~/assets/images/gallery/grid.png);
-    content              : '';
-    position             : absolute;
-    top                  : 0;
-    bottom               : 0;
-    left                 : 0;
-    right                : 0;
+    background-image: url(~/assets/images/gallery/grid.png);
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background-attachment: fixed;
   }
 
   .center-con {
-    position   : absolute;
-    top        : 50%;
-    left       : 50%;
-    transform  : translate(-50%, -50%);
-    text-align : center;
-    color      : #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
     font-weight: bold;
 
     .title-big {
-      font-size  : 80px;
+      font-size: 80px;
       font-family: Ubuntu, sans-serif;
-      font-style : italic;
+      font-style: italic;
 
       &:hover {}
     }

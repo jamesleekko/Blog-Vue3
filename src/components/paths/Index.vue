@@ -26,9 +26,6 @@ onMounted(() => {
       <div class="title-big glitch" data-text="Hustle,Hustle!">Hustle,Hustle!</div>
     </div>
   </div>
-  <div style="height: 1000px; scroll-snap-align: start;" id="test3d">
-  </div>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
