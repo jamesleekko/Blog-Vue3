@@ -5,6 +5,7 @@ import { Check, Close } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import { useGlobalStore } from '~/assets/plugins/pinia/global-store'
 
+const headerHeight = 54
 const { proxy } = getCurrentInstance()
 // const toggleDark = useToggle(isDark)
 const router = useRouter()
@@ -94,9 +95,13 @@ onMounted(() => {
     </div>
 
     <div class="header-right">
-      <el-switch v-model="isDarkTheme" class="mt-2" inline-prompt :active-icon="Check" :inactive-icon="Close"/>
+      <el-switch class="header-switch" v-model="isDarkTheme" inline-prompt :active-icon="Check" :inactive-icon="Close"/>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .header-switch {
+    height: v-bind('headerHeight')px;
+  }
+</style>
