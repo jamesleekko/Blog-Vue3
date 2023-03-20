@@ -1,14 +1,20 @@
 <script setup>
-import { ref, onMounted, getCurrentInstance } from 'vue'
+import { ref, onMounted, getCurrentInstance, watch } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
+import { Check, Close } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import { useGlobalStore } from '~/assets/plugins/pinia/global-store'
 
 const { proxy } = getCurrentInstance()
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
+// const toggleDark = useToggle(isDark)
 const router = useRouter()
 const store = useGlobalStore()
+
+const isDark = useDark()
+const isDarkTheme = ref(isDark)
+watch(isDarkTheme, (val) => {
+  useToggle(val)
+})
 
 function goIndex() {
   router.push('/index')
@@ -27,34 +33,34 @@ function handleScroll() {
 
 function setAnimations() {
   const index = document.querySelector('#tab-index')
-  index.addEventListener('mouseover',()=>{
+  index.addEventListener('mouseover', () => {
     proxy.$animate('.fa-monument', 'heartBeat')
   })
-  index.addEventListener('mouseout',()=>{
+  index.addEventListener('mouseout', () => {
     proxy.$stopAnimate('.fa-monument', 'heartBeat')
   })
 
   const category = document.querySelector('#tab-category')
-  category.addEventListener('mouseover',()=>{
+  category.addEventListener('mouseover', () => {
     proxy.$animate('.fa-box-archive', 'swing')
   })
-  category.addEventListener('mouseout',()=>{
+  category.addEventListener('mouseout', () => {
     proxy.$stopAnimate('.fa-box-archive', 'swing')
   })
 
   const message = document.querySelector('#tab-message')
-  message.addEventListener('mouseover',()=>{
+  message.addEventListener('mouseover', () => {
     proxy.$animate('.fa-wand-magic-sparkles', 'tada')
   })
-  message.addEventListener('mouseout',()=>{
+  message.addEventListener('mouseout', () => {
     proxy.$stopAnimate('.fa-wand-magic-sparkles', 'tada')
   })
 
   const aboutme = document.querySelector('#tab-aboutme')
-  aboutme.addEventListener('mouseover',()=>{
+  aboutme.addEventListener('mouseover', () => {
     proxy.$animate('.fa-user-astronaut', 'heartBeat')
   })
-  aboutme.addEventListener('mouseout',()=>{
+  aboutme.addEventListener('mouseout', () => {
     proxy.$stopAnimate('.fa-user-astronaut', 'heartBeat')
   })
 }
@@ -67,7 +73,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="header-con" :class="{onTop: scrollTop}">
+  <div class="header-con" :class="{ onTop: scrollTop }">
     <div class="header-left">
 
     </div>
@@ -88,10 +94,9 @@ onMounted(() => {
     </div>
 
     <div class="header-right">
-      
+      <el-switch v-model="isDarkTheme" class="mt-2" inline-prompt :active-icon="Check" :inactive-icon="Close"/>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

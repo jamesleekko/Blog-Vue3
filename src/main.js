@@ -18,6 +18,7 @@ import { faUserSecret, faMonument, faBoxArchive, faUserAstronaut, faWandMagicSpa
 /* add icons to the library */
 library.add(faUserSecret, faMonument, faBoxArchive, faUserAstronaut, faWandMagicSparkles)
 
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import VueLazyLoad from 'vue3-lazyload'
 import { createPinia } from 'pinia'
 import router from '~/assets/plugins/router/vue-router'

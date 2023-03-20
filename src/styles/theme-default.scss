@@ -128,8 +128,7 @@ $h4-color: #8800ff;
   }
 
   .header-right {
-    width: 200px;
-    text-align: right;
+    display: flex;
   }
 
   .header-tabs {
