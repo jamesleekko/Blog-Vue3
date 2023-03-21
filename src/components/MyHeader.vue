@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, getCurrentInstance, watch } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
-import { Check, Close } from '@element-plus/icons-vue'
+import { Sunny, Moon } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import { useGlobalStore } from '~/assets/plugins/pinia/global-store'
 
@@ -19,6 +19,14 @@ watch(isDarkTheme, (val) => {
 
 function goIndex() {
   router.push('/index')
+}
+
+function goCategory() {
+  router.push('/category')
+}
+
+function goMessage() {
+  router.push('/message')
 }
 
 function goAboutMe() {
@@ -83,7 +91,7 @@ onMounted(() => {
       <div class="header-tabs-item" id="tab-index" @click="goIndex()">
         <font-awesome-icon icon="fa-solid fa-monument" /> 首页
       </div>
-      <div class="header-tabs-item" id="tab-category" @click="">
+      <div class="header-tabs-item" id="tab-category" @click="goCategory()">
         <font-awesome-icon icon="fa-solid fa-box-archive" /> 归档
       </div>
       <div class="header-tabs-item" id="tab-message" @click="">
@@ -95,7 +103,7 @@ onMounted(() => {
     </div>
 
     <div class="header-right">
-      <el-switch class="header-switch" v-model="isDarkTheme" inline-prompt :active-icon="Check" :inactive-icon="Close"/>
+      <el-switch class="header-switch" v-model="isDarkTheme" inline-prompt :active-icon="Moon" :inactive-icon="Sunny"/>
     </div>
   </div>
 </template>

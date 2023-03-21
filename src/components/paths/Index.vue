@@ -13,7 +13,6 @@ const toggleDark = useToggle(isDark)
 const curPictureNum = Math.floor(Math.random() * (store.totalGallery - 1)) + Number(1);
 
 onMounted(() => {
-  console.log('show gallery ele', $('.index-gallery'), curPictureNum)
   $('.index-gallery').css('background-image', `url(${banners[curPictureNum - 1]})`)
 })
 
