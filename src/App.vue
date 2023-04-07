@@ -2,6 +2,13 @@
 import { onMounted, ref } from 'vue'
 import MyHeaderVue from '~/components/MyHeader.vue';
 import MyMainVue from '~/components/MyMain.vue';
+import { useGlobalStore } from './assets/plugins/pinia/global-store';
+import { getArticleCategory } from '~/assets/plugins/axios/http';
+
+const store = useGlobalStore();
+getArticleCategory().then(res => {
+  store.setCategoryList(res.data.data)
+})
 </script>
 
 <template>
