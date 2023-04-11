@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const BASE_URL = "http://localhost:5173/api";
+
 const mAxios = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: BASE_URL,
   timeout: 2000,
   
 });

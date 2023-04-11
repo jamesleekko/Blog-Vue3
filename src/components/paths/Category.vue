@@ -1,16 +1,18 @@
 <template>
-  <div class="cate-con">
+  <div class="cate-con mt-[54px]">
     <div class="sub-gallery">
       <div class="center-con">
-        <p class="banner-title">文章分类</p>
+        <p class="banner-title">文章归档</p>
       </div>
     </div>
     <div class="h-4 -mx-[20px] bg-slate-300"></div>
     <div class="container flex mx-auto justify-center">
-      <div class="w-[200px] p-3">
-        <div v-for="item in categories" class="">{{ item }}</div>
+      <div class="con-left w-[200px] p-3">
+        <div v-for="item in store.categoryList" class="p-3" @click="">
+          {{ item.name }}
+        </div>
       </div>
-      <div class="flex-auto"></div>
+      <div class="con-right flex-auto"></div>
     </div>
   </div>
 </template>
@@ -21,5 +23,4 @@ import { useDark, useToggle } from "@vueuse/core";
 import { useGlobalStore } from "~/assets/plugins/pinia/global-store";
 
 const store = useGlobalStore();
-const categories = store.categoryList;
 </script>

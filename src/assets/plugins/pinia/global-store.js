@@ -10,13 +10,16 @@ export const useGlobalStore = defineStore("globalStore", () => {
   }
 
   //首页轮播图数量
-  const totalGallery = 1;
+  const totalGallery = ref(1);
 
   //文章分类列表
-  let categoryList = [];
+  const categoryList = ref([]);
   function setCategoryList(list) {
-    categoryList = list;
+    categoryList.value = list;
+    console.log(categoryList)
   }
 
-  return { isDark, toggleDark, totalGallery, categoryList, setCategoryList };
+  const count = ref(0);
+
+  return { isDark, toggleDark, totalGallery, categoryList, setCategoryList, count };
 });

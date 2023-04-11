@@ -174,6 +174,12 @@ $--colors: (
     color: #333;
   }
 
+  &.stable{
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 1px 40px -8px rgb(0 0 0 / 50%);
+    color: #333;
+  }
+
   .header-left {
     background: url(~/assets/images/header-left.png) no-repeat;
     background-position: left;
