@@ -1,14 +1,12 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import MyHeaderVue from '~/components/MyHeader.vue';
-import MyMainVue from '~/components/MyMain.vue';
-import { useGlobalStore } from './assets/plugins/pinia/global-store';
-import { getArticleCategory } from '~/assets/plugins/axios/http';
+import { onMounted, ref } from "vue";
+import MyHeaderVue from "~/components/MyHeader.vue";
+import MyMainVue from "~/components/MyMain.vue";
+import { useGlobalStore } from "./assets/plugins/pinia/global-store";
+import { setArticleCategory } from "~/assets/utils/commonFunc";
 
 const store = useGlobalStore();
-getArticleCategory().then(res => {
-  store.setCategoryList(res.data.data)
-})
+setArticleCategory();
 </script>
 
 <template>
@@ -25,7 +23,6 @@ getArticleCategory().then(res => {
 </template>
 
 <style lang="scss">
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

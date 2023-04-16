@@ -12,7 +12,8 @@
           {{ item.name }}
         </div>
       </div>
-      <div class="con-right flex-auto"></div>
+      <div class="con-center flex-auto"></div>
+      <div class="con-right w-[200px] p-3"></div>
     </div>
   </div>
 </template>
