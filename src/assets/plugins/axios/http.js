@@ -20,4 +20,12 @@ function getBannerImageUrl(type) {
   });
 }
 
-export { getArticleCategory, getBannerImageUrl };
+function getArticleGroup(type){
+  return mAxios.get("/getArticleGroup", {
+    params: {
+      type: type,
+    },
+  });
+}
+
+export { getArticleCategory, getBannerImageUrl, getArticleGroup };

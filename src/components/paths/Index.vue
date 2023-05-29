@@ -9,7 +9,7 @@ const banners = [banner1];
 const store = useGlobalStore();
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
-const slogan = ref("人往高处走");
+const slogan = ref(" 人往高处走 .");
 
 const curPictureNum =
   Math.floor(Math.random() * (store.totalGallery - 1)) + Number(1);

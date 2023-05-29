@@ -61,6 +61,17 @@ $--colors: (
   transition-duration: 0.2s;
 }
 
+@mixin bottom-line() {
+  @include common-transition();
+  width: 0;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: #8800ff;
+}
+
 .glitch {
   position: relative;
   mix-blend-mode: lighten;
@@ -174,7 +185,7 @@ $--colors: (
     color: #333;
   }
 
-  &.stable{
+  &.stable {
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 1px 40px -8px rgb(0 0 0 / 50%);
     color: #333;
@@ -214,14 +225,7 @@ $--colors: (
       }
 
       &::after {
-        @include common-transition();
-        width: 0;
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        height: 3px;
-        background: #8800ff;
+        @include bottom-line();
       }
     }
   }
@@ -270,15 +274,19 @@ $--colors: (
 }
 
 .sub-gallery {
-  height: 200px;
+  min-height: 200px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   position: relative;
-  background-image: url(~/assets/images/gallery/category/category-banner1.jpg);
+  // background-image: url(~/assets/images/gallery/category/category-banner1.jpg);
   margin: -20px;
   margin-bottom: 0;
+
+  .sub-img {
+    width: 100%;
+  }
 
   .center-con {
     position: absolute;
@@ -289,13 +297,43 @@ $--colors: (
     color: #fff;
     font-weight: bold;
   }
-}
 
-.banner-title {
-  font-size: 54px;
-  color: #fff;
+  .banner-title {
+    font-size: 54px;
+    color: #ddc4ff;
+    font-weight: normal;
+    font-family: Microsoft JhengHei;
+  }
 }
 
 .header-switch {
   @include iconInBar();
+}
+
+.drawer-outer {
+  .level1 {
+    .level2 {
+    }
+  }
+}
+
+.art-cat-item {
+  @include common-transition();
+  height: 54px;
+  line-height: 54px;
+  width: 88px;
+  position: relative;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
+
+  &::after {
+    @include bottom-line();
+  }
 }

@@ -9,16 +9,28 @@ export const useGlobalStore = defineStore("globalStore", () => {
     useToggle(isDark);
   }
 
-  //首页轮播图url
+  //首页大图url
   const index_banner_url = ref("");
   function setIndexBannerUrl(url) {
     index_banner_url.value = url;
+  }
+
+  //归档banner图url
+  const category_banner_url = ref("");
+  function setCategoryBannerUrl(url) {
+    category_banner_url.value = url;
   }
 
   //文章分类列表
   const categoryList = ref([]);
   function setCategoryList(list) {
     categoryList.value = list;
+  }
+
+  //文章归档-日期
+  const articleGroupByDate = ref([]);
+  function setArticleGroupByDate(list) {
+    articleGroupByDate.value = list;
   }
 
   const count = ref(0);
@@ -31,5 +43,9 @@ export const useGlobalStore = defineStore("globalStore", () => {
     setCategoryList,
     setIndexBannerUrl,
     count,
+    setCategoryBannerUrl,
+    category_banner_url,
+    articleGroupByDate,
+    setArticleGroupByDate,
   };
 });
