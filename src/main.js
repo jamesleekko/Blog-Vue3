@@ -23,6 +23,8 @@ import {
   faWandMagicSparkles,
   faSquarePen,
   faCube,
+  faCalendarDays,
+  faClock,
 } from "@fortawesome/free-solid-svg-icons";
 /* add icons to the library */
 library.add(
@@ -32,7 +34,9 @@ library.add(
   faUserAstronaut,
   faWandMagicSparkles,
   faSquarePen,
-  faCube
+  faCube,
+  faCalendarDays,
+  faClock
 );
 
 // import * as ElementPlusIconsVue from '@element-plus/icons-vue'

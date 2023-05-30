@@ -1,19 +1,24 @@
 <template>
   <div class="cate-con mt-[54px]">
-    <div class="sub-gallery">
-      <el-image class="sub-img" :src="store.category_banner_url" fit="none" />
+    <div class="min-h-[200] relative mb-0 p-8 sub-gallery">
+      <el-image class="w-full" :src="store.category_banner_url" fit="fill" />
       <div class="center-con">
         <p class="banner-title">文章归档</p>
       </div>
     </div>
-    <div class="container flex mx-auto justify-center">
-      <div class="con-left w-[200px] p-3">
-        <div class="art-cat-item" v-for="item in store.categoryList" @click="">
-          <font-awesome-icon :icon="getCateIcon(item)" :id="item.id + 'item'" />
+    <div class="container flex flex-wrap mx-auto justify-center">
+      <div class="con-left w-[120px] p-4">
+        <div
+          class="art-cat-item animate__animated animate__fadeInUp"
+          v-for="item in store.categoryList"
+          @click=""
+        >
+          <font-awesome-icon :icon="getCateIcon(item)" :id="'cat-' + item.id" />
           {{ item.name }}
         </div>
       </div>
-      <div class="con-center p-3">
+      <div class="w-[1px] border-[1px] border-dashed border-grey-200"></div>
+      <div class="con-center p-4">
         <MyDrawer
           :data="store.articleGroupByDate"
           :key_level1="'year_month'"
@@ -21,7 +26,7 @@
           :key_level2="'title'"
         ></MyDrawer>
       </div>
-      <!-- <div class="con-right w-[200px] p-3"></div> -->
+      <div class="con-right w-[120px] p-4"></div>
     </div>
   </div>
 </template>
@@ -47,10 +52,10 @@ function setAnimations() {
   const items = document.querySelectorAll(".art-cat-item");
   items.forEach((item, index) => {
     item.addEventListener("mouseover", () => {
-      proxy.$animate("#" + (index + 1) + "item", "swing");
+      proxy.$animate(`#cat-${index + 1}`, "tada");
     });
     item.addEventListener("mouseout", () => {
-      proxy.$stopAnimate("#" + (index + 1) + "item", "swing");
+      proxy.$stopAnimate(`#cat-${index + 1}`, "tada");
     });
   });
 }

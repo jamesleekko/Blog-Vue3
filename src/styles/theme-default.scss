@@ -23,6 +23,8 @@ $--colors: (
   ),
 );
 
+$my-purple: #8800ff;
+
 @forward "element-plus/theme-chalk/src/common/var.scss" with (
   $colors: (
     "primary": (
@@ -69,7 +71,7 @@ $--colors: (
   bottom: 0;
   left: 0;
   height: 3px;
-  background: #8800ff;
+  background-color: $my-purple
 }
 
 .glitch {
@@ -274,15 +276,6 @@ $--colors: (
 }
 
 .sub-gallery {
-  min-height: 200px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  position: relative;
-  // background-image: url(~/assets/images/gallery/category/category-banner1.jpg);
-  margin: -20px;
-  margin-bottom: 0;
 
   .sub-img {
     width: 100%;
@@ -310,13 +303,6 @@ $--colors: (
   @include iconInBar();
 }
 
-.drawer-outer {
-  .level1 {
-    .level2 {
-    }
-  }
-}
-
 .art-cat-item {
   @include common-transition();
   height: 54px;
@@ -336,4 +322,17 @@ $--colors: (
   &::after {
     @include bottom-line();
   }
+}
+
+.linearInOut-enter-from,
+.linearInOut-leave-to {
+  max-height: 0;
+}
+.linearInOut-enter-to,
+.linearInOut-leave-from {
+  max-height: 100vh;
+}
+.linearInOut-enter-active,
+.linearInOut-leave-active {
+  transition: max-height .5s ease-in-out;
 }
