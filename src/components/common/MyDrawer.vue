@@ -54,17 +54,21 @@ onMounted(() => {});
       <transition name="linearInOut">
         <div v-show="!item1.hide" class="overflow-hidden">
           <div
-            class="level2 w-[800px] rounded-md p-4 m-4 bg-gray-200 flex justify-between cursor-pointer"
+            class="level2 stacked-right w-[800px] m-4 cursor-pointer before:rounded-[5px] after:rounded-[5px] before:bg-gray-300 after:bg-gray-400"
             v-for="(item2, index2) in props.data[index1][key_array2]"
             :key="index2"
           >
-            <div class="">{{ item2[props.key_level2] }}</div>
-            <div class="" v-if="item2.time">
-              <font-awesome-icon
-                icon="fa-solid fa-clock"
-                class="text-gray-500"
-              />
-              {{ getMonth_day(item2.time) }}
+            <div
+              class="content rounded-[5px] p-4 bg-gray-100 flex justify-between"
+            >
+              <div class="">{{ item2[props.key_level2] }}</div>
+              <div class="" v-if="item2.time">
+                <font-awesome-icon
+                  icon="fa-solid fa-clock"
+                  class="text-gray-500"
+                />
+                {{ getMonth_day(item2.time) }}
+              </div>
             </div>
           </div>
         </div>

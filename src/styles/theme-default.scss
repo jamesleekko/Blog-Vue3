@@ -71,7 +71,7 @@ $my-purple: #8800ff;
   bottom: 0;
   left: 0;
   height: 3px;
-  background-color: $my-purple
+  background-color: $my-purple;
 }
 
 .glitch {
@@ -276,7 +276,6 @@ $my-purple: #8800ff;
 }
 
 .sub-gallery {
-
   .sub-img {
     width: 100%;
   }
@@ -334,5 +333,55 @@ $my-purple: #8800ff;
 }
 .linearInOut-enter-active,
 .linearInOut-leave-active {
-  transition: max-height .5s ease-in-out;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.stacked-right {
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+  will-change: transform;
+
+  &:before,
+  &:after {
+    transform: scale(0.9);
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: transform 0.3s ease-in-out;
+    transform-origin: left center;
+    will-change: transform;
+  }
+
+  &:before {
+    z-index: -1;
+  }
+
+  &:after {
+    z-index: -2;
+  }
+
+  &:hover {
+    transform: translate(5px, 0);
+
+    &:before {
+      transform: translate(-5px, 0) scale(0.95);
+    }
+    &:after {
+      transform: translate(-10px, 0) scale(0.9);
+    }
+  }
+}
+
+.after-opacity-1 {
+  &::after {
+    opacity: 1;
+  }
+}
+.before-opacity-1 {
+  &::before {
+    opacity: 1;
+  }
 }
