@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, onMounted, ref } from "vue";
+import { reactive, onMounted, ref} from "vue";
 import { useGlobalStore } from "~/assets/plugins/pinia/global-store";
 
 const store = useGlobalStore();
@@ -12,7 +12,6 @@ const props = defineProps({
 });
 
 const swtichHide = (item) => {
-  console.log("switch hide");
   if (item.hide == undefined) {
     item.hide = true;
   } else {
@@ -25,6 +24,11 @@ function getMonth_day(date) {
   const month = time.getMonth() + 1;
   const day = time.getDate();
   return `${month}月${day}日`;
+}
+
+const emit = defineEmits(["chooseItem"]);
+function choose(item) {
+  emit("chooseItem", item);
 }
 
 onMounted(() => {});
@@ -56,7 +60,7 @@ onMounted(() => {});
           <div
             class="level2 stacked-right w-[800px] m-4 cursor-pointer before:rounded-[5px] after:rounded-[5px] before:bg-gray-300 after:bg-gray-400"
             v-for="(item2, index2) in props.data[index1][key_array2]"
-            :key="index2"
+            :key="index2" @click="choose(item2)"
           >
             <div
               class="content rounded-[5px] p-4 bg-gray-100 flex justify-between"

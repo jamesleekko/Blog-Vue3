@@ -15,6 +15,8 @@ setArticleCategory();
 setIndexBannerUrl();
 setCategoryBannerUrl();
 setArticleGroupByDate();
+
+onMounted(() => {});
 </script>
 
 <template>

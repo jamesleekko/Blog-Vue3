@@ -9,20 +9,19 @@ const banners = [banner1];
 const store = useGlobalStore();
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
-const slogan = ref(" 人往高处走 .");
+const slogan = ref(" Hustle Hustle");
 
 const curPictureNum =
   Math.floor(Math.random() * (store.totalGallery - 1)) + Number(1);
 
 onMounted(() => {
-  // $('.index-gallery').css('background-image', `url(${banners[curPictureNum - 1]})`)
 });
 </script>
 
 <template>
   <div
     class="index-gallery"
-    :style="{ background: `url(${store.index_banner_url})` }"
+    :style="{ 'background-image': `url(${store.index_banner_url})` }"
   >
     <div style="height: 20px"></div>
     <div class="center-con">

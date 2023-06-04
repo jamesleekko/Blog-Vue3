@@ -36,8 +36,6 @@ $my-purple: #8800ff;
   )
 );
 
-// @tailwind base;
-
 @mixin iconInBar() {
   .el-switch__inner {
     transform: translateX(calc(-50% + 2px));
@@ -384,4 +382,27 @@ $my-purple: #8800ff;
   &::before {
     opacity: 1;
   }
+}
+
+html {
+  /*隐藏滚动条，当IE下溢出，仍然可以滚动*/
+  -ms-overflow-style: none;
+  /*火狐下隐藏滚动条*/
+  overflow: -moz-scrollbars-none;
+}
+/*Chrome下隐藏滚动条，溢出可以透明滚动*/
+html::-webkit-scrollbar {
+  // width: 0px;
+
+  *::-webkit-scrollbar{
+    // width: 0;
+  }
+}
+::-webkit-scrollbar{
+  width: 5px;
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #ffa619;
+  height: 100px;
 }

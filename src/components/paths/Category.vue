@@ -24,6 +24,7 @@
           :key_level1="'year_month'"
           :key_array2="'articles'"
           :key_level2="'title'"
+          @chooseItem="goArticle"
         ></MyDrawer>
       </div>
       <div class="con-right w-[120px] p-4"></div>
@@ -35,8 +36,10 @@
 import { ref, onMounted, getCurrentInstance } from "vue";
 import { useGlobalStore } from "~/assets/plugins/pinia/global-store";
 import MyDrawer from "~/components/common/MyDrawer.vue";
+import { useRouter } from "vue-router";
 
 const store = useGlobalStore();
+const router = useRouter();
 const proxy = getCurrentInstance()?.proxy;
 
 function getCateIcon(item) {
@@ -58,6 +61,10 @@ function setAnimations() {
       proxy.$stopAnimate(`#cat-${index + 1}`, "tada");
     });
   });
+}
+
+function goArticle(item) {
+  router.push("/article?id=" + item.id);
 }
 
 onMounted(() => {

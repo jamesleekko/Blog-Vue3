@@ -20,7 +20,7 @@ function getBannerImageUrl(type) {
   });
 }
 
-function getArticleGroup(type){
+function getArticleGroup(type) {
   return mAxios.get("/getArticleGroup", {
     params: {
       type: type,
@@ -28,4 +28,13 @@ function getArticleGroup(type){
   });
 }
 
-export { getArticleCategory, getBannerImageUrl, getArticleGroup };
+function getArticleContent(id) {
+  return mAxios.post("/articleContent?" + "id=" + id);
+}
+
+export {
+  getArticleCategory,
+  getBannerImageUrl,
+  getArticleGroup,
+  getArticleContent,
+};
