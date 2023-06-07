@@ -40,8 +40,11 @@ library.add(
   faCalendarDays,
   faClock,
   faEye,
-  faThumbsUp
+  faThumbsUp,
+  farThumbsUp
 );
+
+import { faThumbsUp as farThumbsUp } from "@fortawesome/free-regular-svg-icons";
 
 // import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import VueLazyLoad from "vue3-lazyload";

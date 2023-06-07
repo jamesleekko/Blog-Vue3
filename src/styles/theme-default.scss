@@ -394,15 +394,23 @@ html {
 html::-webkit-scrollbar {
   // width: 0px;
 
-  *::-webkit-scrollbar{
+  *::-webkit-scrollbar {
     // width: 0;
   }
 }
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 5px;
   background-color: transparent;
 }
 ::-webkit-scrollbar-thumb {
   background-color: #ffa619;
   height: 100px;
+}
+
+.art-content {
+  .v-md-editor-preview {
+    .github-markdown-body {
+      padding: 0;
+    }
+  }
 }

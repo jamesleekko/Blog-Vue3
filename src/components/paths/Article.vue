@@ -10,19 +10,37 @@
       >
         {{ articleContent.title }}
       </p>
-      <div class="absolute left-[50%] top-[calc(50%+5rem)] translate-x-[-50%] translate-y-[-50%]">
-        最后编辑于 {{ articleContent.time }} 
+      <div
+        class="absolute left-[50%] top-[calc(50%+5rem)] translate-x-[-50%] translate-y-[-50%]"
+      >
+        最后编辑于 {{ articleContent.time }}
       </div>
-      <div class="absolute left-[50%] top-[calc(50%+3rem)] translate-x-[-50%] translate-y-[-50%]">
-        <font-awesome-icon icon="fa-solid fa-eye"/> 
-        {{ articleContent.views }} 
-        <font-awesome-icon icon="fa-solid fa-thumbs-up"/> 
-        {{ articleContent.likes }}
+      <div
+        class="absolute left-[50%] top-[calc(50%+3rem)] translate-x-[-50%] translate-y-[-50%]"
+      >
+        <font-awesome-icon icon="fa-solid fa-eye" />
+        {{ articleContent.views ? articleContent.views : 0 }}
+        &nbsp;&nbsp;
+        <font-awesome-icon icon="fa-solid fa-thumbs-up" />
+        {{ articleContent.likes ? articleContent.likes : 0 }}
       </div>
     </div>
-    <div class="container mx-auto">
+
+    <div class="container mx-auto mt-[13px] pt-8">
       <div class="art-content mx-auto max-w-[800px]">
+
         <v-md-preview :text="articleContent.content" />
+
+        <div class="option-con flex items-center justify-center mt-8">
+          <div class="thumb-button">
+            <input class="thumb-input" id="article-like" type="checkbox" />
+            <label class="thumb-label" for="article-like"
+              ><font-awesome-icon icon="fa-regular fa-thumbs-up"
+            /></label>
+          </div>
+        </div>
+
+        <div class="comments-con"></div>
       </div>
     </div>
   </div>
