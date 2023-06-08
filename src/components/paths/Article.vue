@@ -28,7 +28,6 @@
 
     <div class="container mx-auto mt-[13px] pt-8">
       <div class="art-content mx-auto max-w-[800px]">
-
         <v-md-preview :text="articleContent.content" />
 
         <div class="option-con flex items-center justify-center mt-8">
@@ -40,7 +39,11 @@
           </div>
         </div>
 
-        <div class="comments-con"></div>
+        <!-- <hr class="comments-divider" data-symbol="留个言"> -->
+
+        <div class="comments-con">
+
+        </div>
       </div>
     </div>
   </div>
@@ -53,6 +56,7 @@ import { useRouter, useRoute } from "vue-router";
 import {
   getArticleContent,
   getBannerImageUrl,
+  thumbArticle,
 } from "~/assets/plugins/axios/http";
 
 const store = useGlobalStore();

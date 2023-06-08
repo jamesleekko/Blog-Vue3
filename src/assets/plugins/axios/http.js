@@ -29,7 +29,11 @@ function getArticleGroup(type) {
 }
 
 function getArticleContent(id) {
-  return mAxios.post("/articleContent?" + "id=" + id);
+  return mAxios.post("/articleContent?" + "id=" + id + "&isViewer=true");
+}
+
+function thumbArticle(id) {
+  return mAxios.post("/thumbArticle?" + "id=" + id);
 }
 
 export {
@@ -37,4 +41,5 @@ export {
   getBannerImageUrl,
   getArticleGroup,
   getArticleContent,
+  thumbArticle,
 };
