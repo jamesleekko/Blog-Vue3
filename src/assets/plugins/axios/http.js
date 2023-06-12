@@ -41,11 +41,19 @@ function cancelThumbArticle(id) {
 }
 
 function getQQAvatar(qq) {
-  return mAxios.get(`q2.qlogo.cn/headimg_dl?dst_uin=${qq}&spec=100`);
+  return mAxios.get(`/headimg_dl?dst_uin=${qq}&spec=100`,{
+    headers: {
+      Accept:"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+    }
+  });
 }
 
 function getQQName(qq) {
   return mAxios.get(`https://users.qzone.qq.com/fcg-bin/cgi_get_portrait.fcg?uins=${qq}`);
+}
+
+function getInfoByQQ(qq) {
+  return axios.all([getQQAvatar(qq), getQQName(qq)]);
 }
 
 export {
@@ -57,4 +65,5 @@ export {
   cancelThumbArticle,
   getQQAvatar,
   getQQName,
+  getInfoByQQ,
 };
