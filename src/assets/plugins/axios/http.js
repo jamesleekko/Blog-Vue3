@@ -36,10 +36,25 @@ function thumbArticle(id) {
   return mAxios.post("/thumbArticle?" + "id=" + id);
 }
 
+function cancelThumbArticle(id) {
+  return mAxios.post("/cancelThumb?" + "id=" + id);
+}
+
+function getQQAvatar(qq) {
+  return mAxios.get(`q2.qlogo.cn/headimg_dl?dst_uin=${qq}&spec=100`);
+}
+
+function getQQName(qq) {
+  return mAxios.get(`https://users.qzone.qq.com/fcg-bin/cgi_get_portrait.fcg?uins=${qq}`);
+}
+
 export {
   getArticleCategory,
   getBannerImageUrl,
   getArticleGroup,
   getArticleContent,
   thumbArticle,
+  cancelThumbArticle,
+  getQQAvatar,
+  getQQName,
 };

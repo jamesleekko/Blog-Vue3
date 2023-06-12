@@ -30,20 +30,28 @@
       <div class="art-content mx-auto max-w-[800px]">
         <v-md-preview :text="articleContent.content" />
 
-        <div class="option-con flex items-center justify-center mt-8">
-          <div class="thumb-button">
-            <input class="thumb-input" id="article-like" type="checkbox" />
+        <div class="option-con flex items-center justify-center flex-wrap mt-8">
+          <div class="thumb-button !w-full">
+            <input
+              class="thumb-input"
+              id="article-like"
+              type="checkbox"
+              v-model="isThumb"
+              @change="switchThumb()"
+            />
             <label class="thumb-label" for="article-like"
               ><font-awesome-icon icon="fa-regular fa-thumbs-up"
             /></label>
           </div>
+          <p class="text-gray-400">
+            收获&nbsp;<span class="text-[#e2264d]">{{
+              articleContent.likes
+            }}</span
+            >&nbsp;个赞
+          </p>
         </div>
 
-        <!-- <hr class="comments-divider" data-symbol="留个言"> -->
-
-        <div class="comments-con">
-
-        </div>
+        <CommentInput class="mt-10"></CommentInput>
       </div>
     </div>
   </div>
@@ -53,18 +61,83 @@
 import { ref, onMounted } from "vue";
 import { useGlobalStore } from "~/assets/plugins/pinia/global-store";
 import { useRouter, useRoute } from "vue-router";
+import CommentInput from "~/components/common/CommentInput.vue";
 import {
   getArticleContent,
   getBannerImageUrl,
   thumbArticle,
+  cancelThumbArticle,
+  getQQAvatar,
+  getQQName,
 } from "~/assets/plugins/axios/http";
+
+const switchThumb = () => {
+  if (isThumb.value) {
+    thumb();
+  } else {
+    cancelThumb();
+  }
+};
+
+const getThumbStatus = () => {
+  const thumbList = localStorage.getItem("thumbList");
+  if (thumbList) {
+    const thumbArray = thumbList.split(",");
+    if (thumbArray.indexOf(route.query.id) !== -1) {
+      isThumb.value = true;
+    } else {
+      isThumb.value = false;
+    }
+  } else {
+    localStorage.setItem("thumbList", "");
+  }
+};
+
+const thumb = () => {
+  thumbArticle(route.query.id).then((res) => {
+    if (res.data.success) {
+      const thumbList = localStorage.getItem("thumbList");
+      if (thumbList) {
+        localStorage.setItem("thumbList", thumbList + "," + route.query.id);
+      } else {
+        localStorage.setItem("thumbList", route.query.id);
+      }
+      articleContent.value.likes = res.data.data[0].likes;
+    } else {
+      console.log("点赞失败");
+    }
+  });
+};
+
+const cancelThumb = () => {
+  cancelThumbArticle(route.query.id).then((res) => {
+    if (res.data.success) {
+      const thumbList = localStorage.getItem("thumbList");
+      if (thumbList) {
+        localStorage.setItem(
+          "thumbList",
+          thumbList
+            .replace("," + route.query.id, "")
+            .replace(route.query.id, "")
+        );
+      }
+      console.log("thumblist2", localStorage.getItem("thumbList"));
+      articleContent.value.likes = res.data.data[0].likes;
+    } else {
+      console.log("取消失败");
+    }
+  });
+};
 
 const store = useGlobalStore();
 const router = useRouter();
 const route = useRoute();
 const articleContent = ref({});
 const bannerSrc = ref("");
+const isThumb = ref(false);
+const newComment = ref("");
 if (route.query.id) {
+  getThumbStatus();
   getBannerImageUrl(4).then((res) => {
     if (res.data.success) {
       //给article-gallery设置背景图片
