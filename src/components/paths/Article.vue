@@ -51,7 +51,7 @@
           </p>
         </div>
 
-        <CommentInput class="mt-10"></CommentInput>
+        <CommentInput class="mt-10" @commit="commitComment"></CommentInput>
       </div>
     </div>
   </div>
@@ -67,9 +67,20 @@ import {
   getBannerImageUrl,
   thumbArticle,
   cancelThumbArticle,
-  getQQAvatar,
-  getQQName,
 } from "~/assets/plugins/axios/http";
+
+const store = useGlobalStore();
+const router = useRouter();
+const route = useRoute();
+const articleContent = ref({});
+const bannerSrc = ref("");
+const isThumb = ref(false);
+const newComment = ref("");
+
+const commitComment = (commentContent) => {
+  
+  console.log("get comment", commentContent.content);
+};
 
 const switchThumb = () => {
   if (isThumb.value) {
@@ -129,13 +140,6 @@ const cancelThumb = () => {
   });
 };
 
-const store = useGlobalStore();
-const router = useRouter();
-const route = useRoute();
-const articleContent = ref({});
-const bannerSrc = ref("");
-const isThumb = ref(false);
-const newComment = ref("");
 if (route.query.id) {
   getThumbStatus();
   getBannerImageUrl(4).then((res) => {
