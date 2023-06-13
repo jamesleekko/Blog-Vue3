@@ -1,6 +1,6 @@
 <script setup>
 import { reactive, onMounted, ref, watch } from "vue";
-import { getInfoByQQ, getQQAvatar } from "~/assets/plugins/axios/http";
+import { getInfoByQQ } from "~/assets/plugins/axios/http";
 
 const props = defineProps({
   replyId: { type: Number, default: null },
@@ -23,29 +23,24 @@ const commentContent = ref({
   website: "",
 });
 
-//监听commentContent.name的变化，停止输入2秒后自动拉取QQ信息
-watch(
-  () => commentContent.value.name,
-  (newVal) => {
-    if (newVal) {
-      setTimeout(() => {
-        if (newVal === commentContent.value.name) {
-          getInfoByQQ(newVal).then((res) => {
-            console.log('qq res', res)
-            // if (res.data.success) {
-            //   commentContent.value.avatar = res.data.data.avatar;
-            //   commentContent.value.email = res.data.data.email;
-            //   commentContent.value.website = res.data.data.website;
-            // }
-          });
-        }
-      }, 2000);
-    }
-  }
-);
-
 function commitComment(commentContent) {
   emit("commit", commentContent);
+}
+
+function getQQInfo() {
+  if (isQQNumber) {
+    getInfoByQQ(commentContent.value.name).then((res) => {
+      if (res.data.success) {
+        commentContent.value.avatar = res.data.avatar_url;
+        commentContent.value.name = res.data.name;
+      }
+    });
+  }
+}
+
+function isQQNumber(str) {
+  var reg = /^[1-9][0-9]{4,10}$/;
+  return reg.test(str);
 }
 </script>
 
@@ -73,6 +68,7 @@ function commitComment(commentContent) {
           class="comments-input"
           placeholder="*昵称"
           v-model="commentContent.name"
+          @blur="getQQInfo()"
         />
       </el-tooltip>
       <input
