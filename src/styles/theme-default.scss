@@ -423,11 +423,11 @@ html::-webkit-scrollbar {
   border-radius: 4px;
   outline-color: transparent;
   transition-property: border-color, border-width, box-shadow;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
   padding: 6px;
-  
-  &:focus{
+
+  &:focus {
     // border-top-color: #ffa619;
     // border-bottom-color: #ffa619;
     border-color: #ffa619;
@@ -444,6 +444,9 @@ html::-webkit-scrollbar {
   border-bottom: 2px solid #ddd;
 }
 
-.comments-commit{
+.comments-commit {
+}
 
+.avatar-shadow {
+  box-shadow: 0 1px 10px -6px rgba(0,0,0,.5);
 }

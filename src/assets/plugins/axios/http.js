@@ -44,6 +44,16 @@ function getInfoByQQ(qq) {
   return mAxios.get("/qq", { params: { qq: qq } });
 }
 
+function getCommentById(id, page, size) {
+  return mAxios.get("/getComments", {
+    params: { id: id, page: page, size: size },
+  });
+}
+
+function addComment(comment) {
+  return mAxios.post("/addComment", comment);
+}
+
 export {
   getArticleCategory,
   getBannerImageUrl,
@@ -52,4 +62,6 @@ export {
   thumbArticle,
   cancelThumbArticle,
   getInfoByQQ,
+  getCommentById,
+  addComment,
 };

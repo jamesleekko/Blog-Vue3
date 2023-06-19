@@ -1,21 +1,21 @@
 <script setup>
 import { reactive, onMounted, ref, watch } from "vue";
+import { ElMessage } from "element-plus";
 import { getInfoByQQ } from "~/assets/plugins/axios/http";
 
 const props = defineProps({
   replyId: { type: Number, default: null },
-  replyName: { type: String, default: null },
-  replyContent: { type: String, default: null },
   mainId: { type: Number, default: null },
+  replyInfo: { type: Object, default: null },
 });
 
 const emit = defineEmits(["commit"]);
 
-const commentContent = ref({
+const commentContent = reactive({
   replyId: props.replyId,
-  replyName: props.replyName,
-  replyContent: props.replyContent,
   mainId: props.mainId,
+  replyName: props.replyName,
+  replyInfo: props.replyInfo,
   content: "",
   avatar: "",
   name: "",
@@ -28,11 +28,18 @@ function commitComment(commentContent) {
 }
 
 function getQQInfo() {
-  if (isQQNumber) {
-    getInfoByQQ(commentContent.value.name).then((res) => {
+  const name = commentContent.name;
+  if (isQQNumber(name)) {
+    getInfoByQQ(name).then((res) => {
       if (res.data.success) {
-        commentContent.value.avatar = res.data.avatar_url;
-        commentContent.value.name = res.data.name;
+        commentContent.avatar = res.data.avatar_url;
+        commentContent.name = res.data.name;
+        commentContent.email = `${name}@qq.com`;
+      } else {
+        ElMessage({
+          message: res.data.message,
+          type: "error",
+        });
       }
     });
   }
@@ -42,15 +49,20 @@ function isQQNumber(str) {
   var reg = /^[1-9][0-9]{4,10}$/;
   return reg.test(str);
 }
+
+const getAvatarUrl = () => {
+  if (commentContent.avatar) {
+    return commentContent.avatar;
+  } else {
+    return "/src/assets/images/user.svg";
+  }
+};
 </script>
 
 <template>
   <div class="comments-con">
     <div v-if="replyId"></div>
-    <p class="text-gray-500" v-if="!replyId">
-      Comments<span class="">&nbsp;|&nbsp;</span
-      ><span class="text-gray-400">22条评论</span>
-    </p>
+    <p class="text-gray-500" v-if="!replyId"></p>
     <textarea
       class="comments-area"
       v-model="commentContent.content"
@@ -58,7 +70,7 @@ function isQQNumber(str) {
     >
     </textarea>
     <div class="flex items-center justify-between mt-4">
-      <el-avatar size="large" class="" :src="commentContent.avatar"></el-avatar>
+      <el-avatar size="large" class="" :src="getAvatarUrl()"></el-avatar>
       <el-tooltip
         effect="dark"
         content="输入QQ号自动拉取信息"
