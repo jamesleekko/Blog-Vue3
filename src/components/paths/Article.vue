@@ -20,6 +20,7 @@ const isThumb = ref(false);
 
 const commentList = ref([]);
 const commentTotal = ref(0);
+const mainCommentTotal = ref(0);
 const mPage = ref(1);
 const mSize = ref(10);
 
@@ -28,7 +29,7 @@ const getCommentList = (id, page, size) => {
     if (res.data.success) {
       commentList.value = res.data.data.comments;
       commentTotal.value = res.data.data.total;
-      console.log("commets result:", res.data); 
+      mainCommentTotal.value = res.data.data.mainTotal;
     } else {
       ElMessage({
         message: res.data.message,
@@ -177,6 +178,7 @@ if (route.query.id) {
           :articleContent="articleContent"
           :commentList="commentList"
           :commentTotal="commentTotal"
+          :mainCommentTotal="mainCommentTotal"
           @commit-success="getCommentList(route.query.id, mPage, mSize)"
         ></Comments>
       </div>

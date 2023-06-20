@@ -25,6 +25,10 @@ const props = defineProps({
     type: Number,
     default: () => 0,
   },
+  mainCommentTotal: {
+    type: Number,
+    default: () => 0,
+  },
 });
 
 //watch commentList
@@ -98,7 +102,9 @@ const switchReply = (index) => {
     <div v-if="!isSub">
       <p class="text-gray-500">
         Comments<span class="">&nbsp;|&nbsp;</span
-        ><span class="text-gray-400">{{ commentTotal }}条评论</span>
+        ><span class="text-gray-400"
+          >{{ commentTotal }}条评论 总数：{{ mainCommentTotal }}</span
+        >
       </p>
       <CommentInput @commit="commitComment"></CommentInput>
     </div>
@@ -118,6 +124,14 @@ const switchReply = (index) => {
             <h4 class="text-[#6812b3] text-base">{{ item.name }}</h4>
             <p class="text-gray-400 text-xs mt-1">发布于 {{ item.time }}</p>
           </div>
+          <div v-if="isSub">
+            <p class="">
+              引用: <span>{{ item.replyTarget.name }}</span> "<span
+                class="max-w-[400px] overflow-ellipsis whitespace-nowrap overflow-hidden inline-block align-top"
+                >{{ item.replyTarget.content }}</span
+              >"
+            </p>
+          </div>
 
           <section class="mt-2">{{ item.content }}</section>
 
@@ -134,7 +148,7 @@ const switchReply = (index) => {
         <CommentInput
           v-if="inputShowList[index]"
           :reply-id="item.id"
-          :main-id="isSub ? item.mainid : item.id"
+          :main-id="isSub ? item.mainId : item.id"
           :reply-info="item"
           @commit="commitComment"
         ></CommentInput>
@@ -150,6 +164,7 @@ const switchReply = (index) => {
     </div>
 
     <ElPagination
+      class="mt-8 justify-center"
       v-if="!isSub"
       :page-size="mSize"
       :total="commentTotal"
