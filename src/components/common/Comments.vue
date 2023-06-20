@@ -60,12 +60,6 @@ const commitComment = (commentContent) => {
   commentContent.time = formatDate;
   commentContent.article_id = props.articleContent.id;
 
-  //处理回复
-  if (commentContent.replyInfo) {
-    commentContent.pid = commentContent.replyId;
-    commentContent.mainid = commentContent.mainId;
-  }
-
   addComment(commentContent).then((res) => {
     if (res.data.success) {
       ElMessage({
@@ -112,20 +106,30 @@ const switchReply = (index) => {
     <div class="mt-10">
       <div
         v-for="(item, index) in commentList"
-        class="group relative mt-8 first:mt-0 border-b-[1px] last:border-b-[0] border-stone-400"
+        :class="{ 'ml-10': isSub }"
+        class="relative mt-8 first:mt-0"
       >
-        <el-avatar class="avatar-shadow" :src="getAvatarUrl(item)"></el-avatar>
-        <div class="inline-block ml-2 align-top">
-          <h4 class="text-[#6812b3] text-base">{{ item.name }}</h4>
-          <p class="text-gray-400 text-xs mt-1">发布于 {{ item.time }}</p>
+        <div class="group/section">
+          <el-avatar
+            class="avatar-shadow"
+            :src="getAvatarUrl(item)"
+          ></el-avatar>
+          <div class="inline-block ml-2 align-top">
+            <h4 class="text-[#6812b3] text-base">{{ item.name }}</h4>
+            <p class="text-gray-400 text-xs mt-1">发布于 {{ item.time }}</p>
+          </div>
+
+          <section class="mt-2">{{ item.content }}</section>
+
+          <button
+            class="absolute right-0 top-0 invisible group-hover/section:visible"
+            @click="switchReply(index)"
+          >
+            {{ inputShowList[index] ? "取消" : "回复" }}
+          </button>
         </div>
-        <p class="mt-2">{{ item.content }}</p>
-        <button
-          class="absolute right-0 top-0 invisible group-hover:visible"
-          @click="switchReply(index)"
-        >
-          {{ inputShowList[index] ? "取消" : "回复" }}
-        </button>
+
+        <div class="mt-8 h-[1px] w-full bg-stone-300"></div>
 
         <CommentInput
           v-if="inputShowList[index]"
@@ -136,16 +140,17 @@ const switchReply = (index) => {
         ></CommentInput>
 
         <Comments
-          v-if="item.subComments && item.subComments.length > 0"
+          v-if="item.replyComments && item.replyComments.length > 0"
           :article-content="props.articleContent"
           :isSub="true"
-          :comment-list="item.subComments"
+          :comment-list="item.replyComments"
           @commit-success="onSubCommitSuccess"
         ></Comments>
       </div>
     </div>
 
     <ElPagination
+      v-if="!isSub"
       :page-size="mSize"
       :total="commentTotal"
       :hide-on-single-page="false"

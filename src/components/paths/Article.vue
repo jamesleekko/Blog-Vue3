@@ -24,11 +24,11 @@ const mPage = ref(1);
 const mSize = ref(10);
 
 const getCommentList = (id, page, size) => {
-  console.log("articlecontent", id);
   getCommentById(id, page, size).then((res) => {
     if (res.data.success) {
       commentList.value = res.data.data.comments;
       commentTotal.value = res.data.data.total;
+      console.log("commets result:", res.data); 
     } else {
       ElMessage({
         message: res.data.message,
@@ -109,12 +109,6 @@ if (route.query.id) {
   getArticleContent(route.query.id).then((res) => {
     if (res.data.success) {
       articleContent.value = res.data.data[0];
-      // console.log("commentRef", proxy.$refs);
-      // proxy.$refs.commentRef.getCommentList(
-      //   route.query.id,
-      //   proxy.$refs.commentRef.mPage,
-      //   proxy.$refs.commentRef.mSize
-      // );
     } else {
       router.push("/category");
     }
