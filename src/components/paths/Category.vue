@@ -1,6 +1,6 @@
 <template>
-  <div class="cate-con mt-[54px]">
-    <div class="min-h-[200] relative mb-0 p-8 sub-gallery">
+  <div class="cate-con mt-[54px] overflow-hidden">
+    <div class="min-h-[200] relative mb-0 p-8 sub-gallery animate__animated animate__pulse">
       <el-image class="w-full" :src="store.category_banner_url" fit="fill" />
       <div class="center-con">
         <p class="banner-title">文章归档</p>

@@ -95,6 +95,7 @@ const getAvatarUrl = (item) => {
 const switchReply = (index) => {
   inputShowList.value[index] = !inputShowList.value[index];
 };
+
 </script>
 
 <template>
@@ -103,7 +104,7 @@ const switchReply = (index) => {
       <p class="text-gray-500">
         Comments<span class="">&nbsp;|&nbsp;</span
         ><span class="text-gray-400"
-          >{{ commentTotal }}条评论 总数：{{ mainCommentTotal }}</span
+          >{{ commentTotal }}条评论</span
         >
       </p>
       <CommentInput @commit="commitComment"></CommentInput>
@@ -124,9 +125,9 @@ const switchReply = (index) => {
             <h4 class="text-[#6812b3] text-base">{{ item.name }}</h4>
             <p class="text-gray-400 text-xs mt-1">发布于 {{ item.time }}</p>
           </div>
-          <div v-if="isSub">
-            <p class="">
-              引用: <span>{{ item.replyTarget.name }}</span> "<span
+          <div v-if="isSub" class="mt-2">
+            <p class="bg-gray-100 p-2 rounded-[4px]">
+              回复：&nbsp;<span>{{ item.replyTarget.name }}</span>&nbsp;&nbsp;&nbsp;"<span
                 class="max-w-[400px] overflow-ellipsis whitespace-nowrap overflow-hidden inline-block align-top"
                 >{{ item.replyTarget.content }}</span
               >"
@@ -162,15 +163,5 @@ const switchReply = (index) => {
         ></Comments>
       </div>
     </div>
-
-    <ElPagination
-      class="mt-8 justify-center"
-      v-if="!isSub"
-      :page-size="mSize"
-      :total="commentTotal"
-      :hide-on-single-page="false"
-      background
-      layout="prev, pager, next"
-    ></ElPagination>
   </div>
 </template>

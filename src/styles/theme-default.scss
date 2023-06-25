@@ -407,6 +407,11 @@ html::-webkit-scrollbar {
   height: 100px;
 }
 
+//隐藏横向滚动
+body {
+  overflow-x: hidden;
+}
+
 .art-content {
   .v-md-editor-preview {
     .github-markdown-body {

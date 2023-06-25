@@ -97,7 +97,21 @@ const cancelThumb = () => {
   });
 };
 
-// onMounted(() => {
+const handleCurrentChange = (val) => {
+  mPage.value = val;
+  getCommentList(route.query.id, mPage.value, mSize.value);
+};
+
+const handlePrevChange = (val) => {
+  mPage.value = val;
+  getCommentList(route.query.id, mPage.value, mSize.value);
+};
+
+const handleNextChange = (val) => {
+  mPage.value = val;
+  getCommentList(route.query.id, mPage.value, mSize.value);
+};
+
 if (route.query.id) {
   getThumbStatus();
   getBannerImageUrl(4).then((res) => {
@@ -118,7 +132,6 @@ if (route.query.id) {
 } else {
   router.push("/category");
 }
-// });
 </script>
 
 <template>
@@ -181,6 +194,18 @@ if (route.query.id) {
           :mainCommentTotal="mainCommentTotal"
           @commit-success="getCommentList(route.query.id, mPage, mSize)"
         ></Comments>
+
+        <ElPagination
+          class="mt-8 justify-center"
+          :page-size="mSize"
+          :total="mainCommentTotal"
+          :hide-on-single-page="true"
+          background
+          layout="prev, pager, next"
+          @current-change="handleCurrentChange"
+          @prev-change="handlePrevChange"
+          @next-change="handleNextChange"
+        ></ElPagination>
       </div>
     </div>
   </div>
