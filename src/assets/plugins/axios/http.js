@@ -20,6 +20,17 @@ function getBannerImageUrl(type) {
   });
 }
 
+function getArticleList(type, name, page, size) {
+  return mAxios.get("/articleList", {
+    params: {
+      type: type,
+      name: name,
+      page: page,
+      size: size,
+    },
+  });
+}
+
 function getArticleGroup(type) {
   return mAxios.get("/getArticleGroup", {
     params: {
@@ -57,6 +68,7 @@ function addComment(comment) {
 export {
   getArticleCategory,
   getBannerImageUrl,
+  getArticleList,
   getArticleGroup,
   getArticleContent,
   thumbArticle,

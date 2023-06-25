@@ -67,7 +67,7 @@ const commitComment = (commentContent) => {
   addComment(commentContent).then((res) => {
     if (res.data.success) {
       ElMessage({
-        message: res.data.message,
+        message: "评论成功",
         type: "success",
       });
       emit("commitSuccess");
