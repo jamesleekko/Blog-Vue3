@@ -105,13 +105,13 @@ onMounted(() => {
     </div>
 
     <div class="header-right">
-      <el-switch
+      <!-- <el-switch
         class="header-switch"
         v-model="isDarkTheme"
         inline-prompt
         :active-icon="Moon"
         :inactive-icon="Sunny"
-      />
+      /> -->
     </div>
   </div>
 </template>
