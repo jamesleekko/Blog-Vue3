@@ -17,7 +17,8 @@ const pageSize = ref(1);
 let scrollWatched = false;
 
 //用于限制文章列表加载数量，以及提前设置容器高度
-const articleLeft = ref(0);
+const articleLeft = ref(0); //剩余未加载文章总数
+const groupLimit = 10;
 const articleGroupCount = ref(0);
 
 const addArticles = (page, size) => {
@@ -31,11 +32,17 @@ const addArticles = (page, size) => {
         articleLeft.value = articleTotal.value - 1;
         await nextTick();
         watchScroll();
+      } else {
+        articleLeft.value--;
       }
     }
   });
 };
 addArticles(currentPage.value, pageSize.value);
+
+const nextGroup = () => {
+  articlegourpCount.value = 1;
+};
 
 const watchScroll = () => {
   const oneHeight = document.querySelector(".article-item").offsetHeight;
@@ -54,14 +61,14 @@ const watchScroll = () => {
         document.documentElement.scrollTop || document.body.scrollTop;
       if (
         scrollTop + windowHeight >
-        listRect.top -
-          Number(itemMarginTop) +
-          listDoms.length * (oneHeight + Number(itemMarginTop)) +
-          10
+          listRect.top -
+            Number(itemMarginTop) +
+            listDoms.length * (oneHeight + Number(itemMarginTop)) +
+            10 &&
+        articleGroupCount.value < groupLimit
       ) {
         currentPage.value++;
         addArticles(currentPage.value, pageSize.value);
-        bottomEdge += oneHeight + Number(itemMarginTop);
       }
     });
     scrollWatched = true;
@@ -95,7 +102,7 @@ onMounted(() => {
 
     <div class="index-list max-w-[800px] mx-auto pb-10">
       <div
-        class="article-item flex h-[200px] justify-center items-center mt-10 rounded-xl overflow-hidden shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] animate__animated animate__fadeInUp"
+        class="article-item flex h-[280px] justify-center items-center mt-10 rounded-xl overflow-hidden shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] animate__animated animate__fadeInUp"
         :class="{ 'flex-row-reverse': index % 2 }"
         v-for="(item, index) in articleList"
       >
@@ -107,6 +114,10 @@ onMounted(() => {
           <p>{{ item.preview }}</p>
         </div>
       </div>
+    </div>
+
+    <div class="flex justify-center" v-if="articleGroupCount == 10">
+      <button class="draw-border">More</button>
     </div>
   </div>
 </template>
