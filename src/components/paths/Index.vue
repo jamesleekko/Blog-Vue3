@@ -21,38 +21,51 @@ const articleLeft = ref(0); //剩余未加载文章总数
 const groupLimit = 10;
 const articleGroupCount = ref(0);
 
-const addArticles = (page, size) => {
-  getArticleList(null, null, page, size).then(async (res) => {
-    if (res.data.success) {
-      articleList.value = articleList.value.concat(res.data.data.list);
-      articleTotal.value = res.data.data.total;
-      articleGroupCount.value++;
+let addingLock = false;
 
-      if (!scrollWatched) {
-        articleLeft.value = articleTotal.value - 1;
+const addArticles = (page, size) => {
+  return new Promise((resolve, reject) => {
+    addingLock = true;
+    getArticleList(null, null, page, size).then(async (res) => {
+      if (res.data.success) {
+        articleGroupCount.value++;
+        articleList.value = articleList.value.concat(res.data.data.list);
+        articleTotal.value = res.data.data.total;
         await nextTick();
-        setContainerHeight();
-        watchScroll();
+        addingLock = false;
+
+        if (!scrollWatched) {
+          articleLeft.value = articleTotal.value - 1;
+          await nextTick();
+          setContainerHeight();
+          watchScroll();
+        } else {
+          articleLeft.value--;
+        }
+        resolve(articleList);
       } else {
-        articleLeft.value--;
+        reject(res);
       }
-    }
+    });
   });
 };
 addArticles(currentPage.value, pageSize.value);
 
 const nextGroup = () => {
-  if (articleLeft.value > 0) {
-    currentPage.value++;
-    articleGroupCount.value = 0;
-    addArticles(currentPage.value, pageSize.value);
-  }
+  currentPage.value++;
+  articleGroupCount.value = 0;
+  addArticles(currentPage.value, pageSize.value).then(() => {
+    setContainerHeight(true);
+  });
 };
 
-const setContainerHeight = () => {
+const setContainerHeight = (includeFirst = false) => {
   const groupEmpty = groupLimit - articleGroupCount.value;
-  const increaseCount =
+  let increaseCount =
     groupEmpty < articleLeft.value ? groupEmpty : articleLeft.value;
+  if (includeFirst) {
+    increaseCount++;
+  }
   const oneHeight = document.querySelector(".article-item").offsetHeight;
   const itemMarginTop = getComputedStyle(
     document.querySelector(".article-item")
@@ -63,7 +76,17 @@ const setContainerHeight = () => {
 };
 
 const watchScroll = () => {
-  const oneHeight = document.querySelector(".article-item").offsetHeight;
+  let oneHeight;
+  try {
+    //检查是否有第一个文章，没有则不监听
+    oneHeight = document.querySelector(".article-item").offsetHeight;
+    if (!oneHeight) {
+      return;
+    }
+  } catch (e) {
+    return;
+  }
+
   const listRect = document
     .querySelector(".index-list")
     .getBoundingClientRect();
@@ -72,26 +95,24 @@ const watchScroll = () => {
     document.querySelector(".article-item")
   ).marginTop.replace("px", "");
 
-  if (oneHeight) {
-    window.addEventListener("scroll", () => {
-      const listDoms = document.querySelectorAll(".article-item");
-      const scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop;
-      if (
-        scrollTop + windowHeight >
-          listRect.top -
-            Number(itemMarginTop) +
-            listDoms.length * (oneHeight + Number(itemMarginTop)) +
-            10 &&
-        articleGroupCount.value < groupLimit &&
-        currentPage.value < articleTotal.value
-      ) {
-        currentPage.value++;
-        addArticles(currentPage.value, pageSize.value);
-      }
-    });
-    scrollWatched = true;
-  }
+  window.addEventListener("scroll", () => {
+    const listDoms = document.querySelectorAll(".article-item");
+    const scrollTop = document.documentElement.scrollTop;
+    if (
+      scrollTop + windowHeight >
+        listRect.top -
+          Number(itemMarginTop) +
+          listDoms.length * (oneHeight + Number(itemMarginTop)) +
+          10 &&
+      articleGroupCount.value < groupLimit &&
+      currentPage.value < articleTotal.value &&
+      !addingLock
+    ) {
+      currentPage.value++;
+      addArticles(currentPage.value, pageSize.value);
+    }
+  });
+  scrollWatched = true;
 };
 
 onMounted(() => {
@@ -126,17 +147,20 @@ onMounted(() => {
         v-for="(item, index) in articleList"
       >
         <div class="w-[60%] h-full bg-slate-500 p-4">
-          <p>哈哈</p>
+          <p>{{ item.title }}</p>
         </div>
         <div class="w-[40%] h-full p-4">
-          <p>嘿嘿</p>
+          <p>{{ item.title }}</p>
           <p>{{ item.preview }}</p>
         </div>
       </div>
     </div>
 
-    <div class="flex justify-center" v-if="articleGroupCount === 10">
-      <button class="draw-border" @click="nextGroup()">More</button>
+    <div
+      class="flex justify-center animate__animated animate__fadeInUp"
+      v-if="articleGroupCount === 10 && articleLeft > 0"
+    >
+      <button class="draw-border" @click="nextGroup()">MORE</button>
     </div>
   </div>
 </template>
