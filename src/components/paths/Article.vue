@@ -154,10 +154,10 @@ if (route.query.id) {
       <div
         class="absolute left-[50%] top-[calc(50%+3rem)] translate-x-[-50%] translate-y-[-50%]"
       >
-        <font-awesome-icon icon="fa-solid fa-eye" />
+        <font-awesome-icon icon="fa-regular fa-eye" />
         {{ articleContent.views ? articleContent.views : 0 }}
         &nbsp;&nbsp;
-        <font-awesome-icon icon="fa-solid fa-thumbs-up" />
+        <font-awesome-icon icon="fa-regular fa-thumbs-up" />
         {{ articleContent.likes ? articleContent.likes : 0 }}
       </div>
     </div>

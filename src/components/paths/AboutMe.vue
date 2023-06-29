@@ -1,14 +1,11 @@
 <script setup>
-import { ref } from 'vue'
-
-const count = ref(1)
+import { ref } from "vue";
 </script>
 
 <template>
-  <p>
-    关于james.
-  </p>
+  <div class="mt-[54px]">
+    <p>还没想好</p>
+  </div>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

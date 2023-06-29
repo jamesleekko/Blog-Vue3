@@ -3,11 +3,12 @@ import { nextTick, onMounted, ref, watch } from "vue";
 import { useDark, useToggle } from "@vueuse/core";
 import { useGlobalStore } from "~/assets/plugins/pinia/global-store";
 import { getArticleList } from "~/assets/plugins/axios/http";
+import moment from "moment";
 
 const store = useGlobalStore();
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
-const slogan = ref(" Hustle Hustle ");
+const slogan = ref("人往高处走");
 const articleList = ref([]);
 const articleTotal = ref(0);
 const currentPage = ref(1);
@@ -32,6 +33,13 @@ const addArticles = (page, size) => {
         articleList.value = articleList.value.concat(res.data.data.list);
         articleTotal.value = res.data.data.total;
         await nextTick();
+
+        //给最后一个item里的itemPicture添加背景图
+        const lastItem = document.querySelector(".article-item:last-child");
+        const lastItemPicture = lastItem.querySelector(".itemPicture");
+        console.log('check', lastItem, lastItemPicture)
+        lastItemPicture.style.backgroundImage = `url("https://unsplash.it/1366/768?random")`;
+
         addingLock = false;
 
         if (!scrollWatched) {
@@ -73,6 +81,21 @@ const setContainerHeight = (includeFirst = false) => {
   const increaseHeight = increaseCount * (oneHeight + Number(itemMarginTop));
   const container = document.querySelector(".index-list");
   container.style.height = `${container.offsetHeight + increaseHeight}px`;
+};
+
+const getIcon = (type) => {
+  switch (type) {
+    case 1:
+      return "fa-solid fa-cube";
+      break;
+    case 2:
+      return "fa-solid fa-square-pen";
+      break;
+  }
+};
+
+const getTypeName = (type) => {
+  return store.categoryList.find((item) => item.id === type).name;
 };
 
 const watchScroll = () => {
@@ -146,13 +169,31 @@ onMounted(() => {
         :class="{ 'flex-row-reverse': index % 2 }"
         v-for="(item, index) in articleList"
       >
-        <div class="w-[60%] h-full bg-slate-500 p-4">
-          <p>{{ item.title }}</p>
-        </div>
         <div class="w-[40%] h-full p-4">
-          <p>{{ item.title }}</p>
+          <p class="text-xs text-gray-400">
+            <font-awesome-icon icon="fa-regular fa-clock" /> 发布于
+            {{ moment(item.time).format("YY-MM-DD HH:mm:ss") }}
+          </p>
+          <h2 class="mt-2 text-xl">{{ item.title }}</h2>
+          <div class="mt-1 flex justify-start text-gray-400 text-sm">
+            <p class="">
+              <font-awesome-icon icon="fa-regular fa-eye"></font-awesome-icon>
+              {{ item.views }}
+            </p>
+            <p class="ml-4">
+              <font-awesome-icon
+                icon="fa-regular fa-thumbs-up"
+              ></font-awesome-icon>
+              {{ item.likes }}
+            </p>
+            <p class="ml-4">
+              <font-awesome-icon :icon="getIcon(item.type)"></font-awesome-icon>
+              {{ getTypeName(item.type) }}
+            </p>
+          </div>
           <p>{{ item.preview }}</p>
         </div>
+        <div class="itemPicture w-[60%] h-full p-4 bg-cover"></div>
       </div>
     </div>
 

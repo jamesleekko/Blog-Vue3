@@ -14,7 +14,7 @@ window.jQuery = window.$ = $;
 import { library } from "@fortawesome/fontawesome-svg-core";
 /* import font awesome icon component */
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-/* import specific icons */
+/* import solid icons */
 import {
   faUserSecret,
   faMonument,
@@ -28,6 +28,12 @@ import {
   faEye,
   faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
+/* import regular icons */
+import {
+  faThumbsUp as farThumbsUp,
+  faClock as farClock,
+  faEye as farEye,
+} from "@fortawesome/free-regular-svg-icons";
 /* add icons to the library */
 library.add(
   faUserSecret,
@@ -41,10 +47,11 @@ library.add(
   faClock,
   faEye,
   faThumbsUp,
+  farThumbsUp,
+  farClock,
+  farEye,
   farThumbsUp
 );
-
-import { faThumbsUp as farThumbsUp } from "@fortawesome/free-regular-svg-icons";
 
 // import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import VueLazyLoad from "vue3-lazyload";

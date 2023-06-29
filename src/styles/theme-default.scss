@@ -217,6 +217,7 @@ $my-purple: #8800ff;
       text-align: center;
       font-size: 16px;
       cursor: pointer;
+      text-shadow: rgba(0,0,0,0.5) 0 0 2px;
 
       &:hover {
         &::after {
