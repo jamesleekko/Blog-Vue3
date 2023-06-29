@@ -2,7 +2,7 @@
 import { nextTick, onMounted, ref, watch } from "vue";
 import { useDark, useToggle } from "@vueuse/core";
 import { useGlobalStore } from "~/assets/plugins/pinia/global-store";
-import { getArticleList } from "~/assets/plugins/axios/http";
+import { getArticleList, getBannerImageUrl } from "~/assets/plugins/axios/http";
 import moment from "moment";
 
 const store = useGlobalStore();
@@ -37,8 +37,14 @@ const addArticles = (page, size) => {
         //给最后一个item里的itemPicture添加背景图
         const lastItem = document.querySelector(".article-item:last-child");
         const lastItemPicture = lastItem.querySelector(".itemPicture");
-        console.log('check', lastItem, lastItemPicture)
-        lastItemPicture.style.backgroundImage = `url("https://unsplash.it/1366/768?random")`;
+        // lastItemPicture.style.backgroundImage = `url("https://unsplash.it/1366/768?random")`;
+        getBannerImageUrl(5).then(function (res) {
+          console.log('res', res)
+          if (res.data.success) {
+            lastItemPicture.style.backgroundImage = `url("${res.data.data[0].src}")`;
+            console.log(lastItemPicture, res.data.data[0].src);
+          }
+        });
 
         addingLock = false;
 
@@ -165,7 +171,7 @@ onMounted(() => {
 
     <div class="index-list max-w-[800px] mx-auto pb-10">
       <div
-        class="article-item flex h-[280px] justify-center items-center mt-10 rounded-xl overflow-hidden shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] animate__animated animate__fadeInUp"
+        class="article-item flex h-[320px] justify-center items-center mt-10 rounded-xl overflow-hidden shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] animate__animated animate__fadeInUp"
         :class="{ 'flex-row-reverse': index % 2 }"
         v-for="(item, index) in articleList"
       >
@@ -174,8 +180,8 @@ onMounted(() => {
             <font-awesome-icon icon="fa-regular fa-clock" /> 发布于
             {{ moment(item.time).format("YY-MM-DD HH:mm:ss") }}
           </p>
-          <h2 class="mt-2 text-xl">{{ item.title }}</h2>
-          <div class="mt-1 flex justify-start text-gray-400 text-sm">
+          <h2 class="mt-4 text-xl">{{ item.title }}</h2>
+          <div class="mt-4 flex justify-start text-gray-400 text-sm">
             <p class="">
               <font-awesome-icon icon="fa-regular fa-eye"></font-awesome-icon>
               {{ item.views }}
@@ -191,7 +197,7 @@ onMounted(() => {
               {{ getTypeName(item.type) }}
             </p>
           </div>
-          <p>{{ item.preview }}</p>
+          <p class="mt-4">{{ item.preview }}</p>
         </div>
         <div class="itemPicture w-[60%] h-full p-4 bg-cover"></div>
       </div>
