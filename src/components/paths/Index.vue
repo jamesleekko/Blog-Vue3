@@ -8,7 +8,7 @@ import moment from "moment";
 const store = useGlobalStore();
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
-const slogan = ref("人往高处走");
+const slogan = ref("Hustle Hustle");
 const articleList = ref([]);
 const articleTotal = ref(0);
 const currentPage = ref(1);
@@ -171,7 +171,7 @@ onMounted(() => {
 
     <div class="index-list max-w-[800px] mx-auto pb-10">
       <div
-        class="article-item flex h-[320px] justify-center items-center mt-10 rounded-xl overflow-hidden shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] animate__animated animate__fadeInUp"
+        class="article-item flex h-[320px] justify-center items-center mt-10 rounded-xl bg-white overflow-hidden shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] animate__animated animate__fadeInUp"
         :class="{ 'flex-row-reverse': index % 2 }"
         v-for="(item, index) in articleList"
       >
@@ -197,7 +197,7 @@ onMounted(() => {
               {{ getTypeName(item.type) }}
             </p>
           </div>
-          <p class="mt-4">{{ item.preview }}</p>
+          <p class="mt-4 max-h-[48px] overflow-hidden overflow-ellipsis">{{ item.preview }}</p>
         </div>
         <div class="itemPicture w-[60%] h-full p-4 bg-cover"></div>
       </div>

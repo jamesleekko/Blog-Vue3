@@ -217,7 +217,7 @@ $my-purple: #8800ff;
       text-align: center;
       font-size: 16px;
       cursor: pointer;
-      text-shadow: rgba(0,0,0,0.5) 0 0 2px;
+      text-shadow: rgba(0, 0, 0, 0.5) 0 0 2px;
 
       &:hover {
         &::after {
@@ -528,4 +528,13 @@ body {
 
 .draw-border {
   @include btn-border-drawing(#58afd1, #ffe593, 4px, bottom, right);
+}
+
+//背景效果
+#bg-wrap {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  z-index: -1;
 }

@@ -5,6 +5,7 @@ import { createApp } from "vue";
 // import './styles/styles.scss'
 
 import "animate.css";
+import "css-doodle";
 import "~/styles/tailwindcss.css";
 import "element-plus/theme-chalk/src/message.scss";
 import $ from "jquery";
