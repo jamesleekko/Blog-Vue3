@@ -37,7 +37,7 @@ onMounted(() => {});
 <template>
   <div class="drawer-outer min-w-[832px]">
     <div
-      class="level1 animate__animated animate__fadeInUp"
+      class="level1 mb-4 last:mb-0 animate__animated animate__fadeInUp"
       v-for="(item1, index1) in props.data"
       :key="index1"
     >

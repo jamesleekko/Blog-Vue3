@@ -35,6 +35,13 @@ function getQQInfo() {
         commentContent.avatar = res.data.avatar_url;
         commentContent.name = res.data.name;
         commentContent.email = `${name}@qq.com`;
+
+        if (!res.data.name) {
+          ElMessage({
+            message: "拉取QQ昵称失败",
+            type: "error",
+          });
+        }
       } else {
         ElMessage({
           message: res.data.message,

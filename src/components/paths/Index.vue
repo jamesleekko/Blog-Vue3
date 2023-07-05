@@ -39,7 +39,6 @@ const addArticles = (page, size) => {
         const lastItemPicture = lastItem.querySelector(".itemPicture");
         // lastItemPicture.style.backgroundImage = `url("https://unsplash.it/1366/768?random")`;
         getBannerImageUrl(5).then(function (res) {
-          console.log('res', res)
           if (res.data.success) {
             lastItemPicture.style.backgroundImage = `url("${res.data.data[0].src}")`;
             console.log(lastItemPicture, res.data.data[0].src);

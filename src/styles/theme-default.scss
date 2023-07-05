@@ -531,10 +531,21 @@ body {
 }
 
 //背景效果
-#bg-wrap {
+#doodle {
   position: fixed;
   width: 100vw;
   height: 100vh;
   top: 0;
   z-index: -1;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    right: -100%;
+    bottom: -100%;
+    backdrop-filter: blur(100px);
+    z-index: 0;
+  }
 }
