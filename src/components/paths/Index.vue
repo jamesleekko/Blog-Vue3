@@ -1,14 +1,16 @@
 <script setup>
 import { nextTick, onMounted, ref, watch } from "vue";
+import { useRouter } from "vue-router";
 import { useDark, useToggle } from "@vueuse/core";
 import { useGlobalStore } from "~/assets/plugins/pinia/global-store";
 import { getArticleList, getBannerImageUrl } from "~/assets/plugins/axios/http";
 import moment from "moment";
 
+const router = useRouter();
 const store = useGlobalStore();
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
-const slogan = ref("Hustle Hustle");
+const slogan = ref("Hustle Hustle`");
 const articleList = ref([]);
 const articleTotal = ref(0);
 const currentPage = ref(1);
@@ -143,6 +145,10 @@ const watchScroll = () => {
   scrollWatched = true;
 };
 
+const goArticle = (id) => {
+  router.push(`/article?id=${id}`);
+};
+
 onMounted(() => {
   watch(
     () => store.index_banner_url,
@@ -170,9 +176,10 @@ onMounted(() => {
 
     <div class="index-list max-w-[800px] mx-auto pb-10">
       <div
-        class="article-item flex h-[320px] justify-center items-center mt-10 rounded-xl bg-white overflow-hidden shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] animate__animated animate__fadeInUp"
+        class="article-item group flex h-[320px] justify-center items-center mt-10 rounded-xl bg-white overflow-hidden shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] animate__animated animate__fadeInUp cursor-pointer"
         :class="{ 'flex-row-reverse': index % 2 }"
         v-for="(item, index) in articleList"
+        @click="goArticle(item.id)"
       >
         <div class="w-[40%] h-full p-4">
           <p class="text-xs text-gray-400">
@@ -196,9 +203,13 @@ onMounted(() => {
               {{ getTypeName(item.type) }}
             </p>
           </div>
-          <p class="mt-4 max-h-[48px] overflow-hidden overflow-ellipsis">{{ item.preview }}</p>
+          <p class="mt-4 max-h-[48px] overflow-hidden overflow-ellipsis">
+            {{ item.preview }}
+          </p>
         </div>
-        <div class="itemPicture w-[60%] h-full p-4 bg-cover"></div>
+        <div
+          class="itemPicture w-[60%] h-full p-4 bg-center bg-[100%,100%] bg-no-repeat transition-[background-size] duration-500 group-hover:bg-[120%,120%]"
+        ></div>
       </div>
     </div>
 

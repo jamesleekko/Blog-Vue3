@@ -84,23 +84,23 @@ const getAvatarUrl = () => {
         placement="top-start"
       >
         <input
-          class="comments-input"
+          class="comments-input duration-500 focus:border-[#ff9c00]"
           placeholder="*昵称"
           v-model="commentContent.name"
           @blur="getQQInfo()"
         />
       </el-tooltip>
       <input
-        class="comments-input"
+        class="comments-input duration-500 focus:border-[#ff9c00]"
         placeholder="*邮箱"
         v-model="commentContent.email"
       />
       <input
-        class="comments-input"
+        class="comments-input duration-500 focus:border-[#ff9c00]"
         placeholder="个人站点"
         v-model="commentContent.website"
       />
-      <button class="comments-commit" @click="commitComment(commentContent)">
+      <button class="comments-commit bg-[#ffa619] hover:bg-[#ff9c00] px-4 py-1 text-1 text-white rounded-sm" @click="commitComment(commentContent)">
         提交
       </button>
     </div>

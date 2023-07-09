@@ -24,6 +24,8 @@ const mainCommentTotal = ref(0);
 const mPage = ref(1);
 const mSize = ref(10);
 
+const md = ref(null);
+
 const getCommentList = (id, page, size) => {
   getCommentById(id, page, size).then((res) => {
     if (res.data.success) {
@@ -164,7 +166,17 @@ if (route.query.id) {
 
     <div class="container mx-auto mt-[13px] pt-8">
       <div class="art-content mx-auto max-w-[800px]">
-        <v-md-preview :text="articleContent.content" />
+        <mavon-editor
+          v-model="articleContent.content"
+          class="w-full"
+          :boxShadow="false"
+          :subfield="false"
+          :toolbarsFlag="false"
+          :editable="false"
+          :previewBackground="'#ffffff00'"
+          defaultOpen="preview"
+          codeStyle="stackoverflow-dark"
+        ></mavon-editor>
 
         <div class="option-con flex items-center justify-center flex-wrap mt-8">
           <div class="thumb-button !w-full">

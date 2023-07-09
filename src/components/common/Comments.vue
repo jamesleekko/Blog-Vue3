@@ -3,6 +3,7 @@ import { reactive, onMounted, ref, watch } from "vue";
 import { addComment } from "~/assets/plugins/axios/http";
 import CommentInput from "~/components/common/CommentInput.vue";
 import { ElMessage } from "element-plus";
+import moment from "moment";
 
 const props = defineProps({
   articleContent: {
@@ -118,12 +119,12 @@ const switchReply = (index) => {
       >
         <div class="group/section">
           <el-avatar
-            class="avatar-shadow"
+            class="avatar-shadow hover:animate-spin"
             :src="getAvatarUrl(item)"
           ></el-avatar>
           <div class="inline-block ml-2 align-top">
             <h4 class="text-[#6812b3] text-base">{{ item.name }}</h4>
-            <p class="text-gray-400 text-xs mt-1">发布于 {{ item.time }}</p>
+            <p class="text-gray-400 text-xs mt-1">发布于 {{ moment(item.time).format("YYYY-MM-DD hh:mm:ss") }}</p>
           </div>
           <div v-if="isSub" class="mt-2">
             <p class="bg-gray-100 p-2 rounded-[4px]">
@@ -137,14 +138,14 @@ const switchReply = (index) => {
           <section class="mt-2">{{ item.content }}</section>
 
           <button
-            class="absolute right-0 top-0 invisible group-hover/section:visible"
+            class="absolute right-0 top-0 invisible group-hover/section:visible bg-[#ffa619] rounded-sm px-2 py-1 text-white text-xs hover:bg-[#ff9c00]"
             @click="switchReply(index)"
           >
             {{ inputShowList[index] ? "取消" : "回复" }}
           </button>
         </div>
 
-        <div class="mt-8 h-[1px] w-full bg-stone-300"></div>
+        <div class="mt-8 h-[1px] w-full bg-gray-200"></div>
 
         <CommentInput
           v-if="inputShowList[index]"

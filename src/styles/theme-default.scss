@@ -1,6 +1,7 @@
 @use "sass:math";
 
-$base-color: #ff9900;
+$base-color: #ffa619;
+$base-hover: #ff9c00;
 
 $--colors: (
   "primary": (
@@ -167,7 +168,7 @@ $my-purple: #8800ff;
 
 .el-header {
   position: fixed;
-  z-index: 2;
+  z-index: 9999;
 }
 
 .header-con {
@@ -436,8 +437,8 @@ body {
   &:focus {
     // border-top-color: #ffa619;
     // border-bottom-color: #ffa619;
-    border-color: #ffa619;
-    border-width: 8px;
+    border-color: #ff9c00;
+    // border-width: 8px;
   }
 }
 
@@ -548,4 +549,23 @@ body {
     backdrop-filter: blur(100px);
     z-index: 0;
   }
+}
+
+.v-note-wrapper{
+  background-color: #dddddd00!important;
+  border: none!important;
+
+  pre{
+    padding: 0!important;
+    .hljs{
+      padding: 16px!important;
+      code {
+        font-size: 1rem!important;
+      }
+    }
+  }
+}
+
+input, textarea{
+  outline: none!important;
 }

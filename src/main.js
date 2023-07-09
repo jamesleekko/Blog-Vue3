@@ -61,12 +61,15 @@ import router from "~/assets/plugins/router/vue-router";
 import App from "~/App.vue";
 
 //vue-md-editor
-
 import VMdPreview from "@kangc/v-md-editor/lib/preview";
 import "@kangc/v-md-editor/lib/style/preview.css";
 import githubTheme from "@kangc/v-md-editor/lib/theme/github.js";
 import "@kangc/v-md-editor/lib/theme/style/github.css";
 import hljs from "highlight.js";
+
+//mavon-editor
+import mavonEditor from "mavon-editor";
+import "mavon-editor/dist/css/index.css";
 
 import { animateCSS, stopAnimateCSS } from "~/assets/utils/animations";
 
@@ -80,6 +83,7 @@ const app = createApp(App);
 app.use(pinia);
 app.use(router);
 app.use(VMdPreview);
+app.use(mavonEditor);
 app.use(VueLazyLoad, {
   loading: "",
   error: "",
