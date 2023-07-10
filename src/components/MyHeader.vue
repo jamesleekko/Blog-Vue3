@@ -87,9 +87,9 @@ onMounted(() => {
     class="header-con"
     :class="{ onTop: scrollTop, stable: inStableHeaderPaths(route.path) }"
   >
-    <div class="header-left"></div>
+    <div class="header-left ani_fadeInLeft"></div>
 
-    <div class="header-tabs">
+    <div class="header-tabs ani_fadeInLeft">
       <div class="header-tabs-item" id="tab-index" @click="goIndex()">
         <font-awesome-icon icon="fa-solid fa-monument" /> 首页
       </div>

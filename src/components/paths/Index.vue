@@ -43,7 +43,6 @@ const addArticles = (page, size) => {
         getBannerImageUrl(5).then(function (res) {
           if (res.data.success) {
             lastItemPicture.style.backgroundImage = `url("${res.data.data[0].src}")`;
-            console.log(lastItemPicture, res.data.data[0].src);
           }
         });
 
@@ -149,75 +148,94 @@ const goArticle = (id) => {
   router.push(`/article?id=${id}`);
 };
 
-onMounted(() => {
-  watch(
-    () => store.index_banner_url,
-    (newVal, oldVal) => {
-      if (newVal) {
-        const gallery = document.querySelector(".index-gallery");
-        gallery.classList.add("animate__animated", "animate__fadeIn");
-      }
-    }
-  );
-});
+// const img = new Image();
+// img.onload = function () {
+//   const gallery = document.querySelector(".index-gallery");
+//   gallery.style.backgroundImage = `url("${img.src}")`;
+//   gallery.classList.add("ani_bgZoom");
+// };
+// onMounted(() => {
+//   watch(
+//     () => store.index_banner_url,
+//     (newVal, oldVal) => {
+//       if (newVal) {
+//         img.src = newVal;
+//       }
+//     }
+//   );
+// });
+function bannerLoaded() {
+  const gallery = document.querySelector("#banner");
+  console.log("gallery", gallery.classList);
+  setTimeout(() => {
+    gallery.classList.add("ani_bgZoom");
+  }, 0);
+}
 </script>
 
 <template>
   <div>
-    <div
-      class="index-gallery"
-      :style="{ 'background-image': `url(${store.index_banner_url})` }"
-    >
-      <div style="height: 20px"></div>
+    <div class="index-gallery">
+      <el-image
+        id="banner"
+        class="w-full h-full"
+        :src="store.index_banner_url"
+        fit="cover"
+        @load="bannerLoaded"
+      />
       <div class="center-con">
         <div class="title-big glitch" :data-text="slogan">{{ slogan }}</div>
       </div>
     </div>
 
-    <div class="index-list max-w-[800px] mx-auto pb-10">
-      <div
-        class="article-item group flex h-[320px] justify-center items-center mt-10 rounded-xl bg-white overflow-hidden shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] animate__animated animate__fadeInUp cursor-pointer"
-        :class="{ 'flex-row-reverse': index % 2 }"
-        v-for="(item, index) in articleList"
-        @click="goArticle(item.id)"
-      >
-        <div class="w-[40%] h-full p-4">
-          <p class="text-xs text-gray-400">
-            <font-awesome-icon icon="fa-regular fa-clock" /> 发布于
-            {{ moment(item.time).format("YY-MM-DD HH:mm:ss") }}
-          </p>
-          <h2 class="mt-4 text-xl">{{ item.title }}</h2>
-          <div class="mt-4 flex justify-start text-gray-400 text-sm">
-            <p class="">
-              <font-awesome-icon icon="fa-regular fa-eye"></font-awesome-icon>
-              {{ item.views }}
+    <div>
+      <div class="index-list max-w-[800px] mx-auto pb-10">
+        <div
+          class="article-item group flex h-[320px] justify-center items-center mt-10 rounded-xl bg-white overflow-hidden shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] animate__animated animate__fadeInUp cursor-pointer"
+          :class="{ 'flex-row-reverse': index % 2 }"
+          v-for="(item, index) in articleList"
+          @click="goArticle(item.id)"
+        >
+          <div class="w-[40%] h-full p-4">
+            <p class="text-xs text-gray-400">
+              <font-awesome-icon icon="fa-regular fa-clock" /> 发布于
+              {{ moment(item.time).format("YY-MM-DD HH:mm:ss") }}
             </p>
-            <p class="ml-4">
-              <font-awesome-icon
-                icon="fa-regular fa-thumbs-up"
-              ></font-awesome-icon>
-              {{ item.likes }}
-            </p>
-            <p class="ml-4">
-              <font-awesome-icon :icon="getIcon(item.type)"></font-awesome-icon>
-              {{ getTypeName(item.type) }}
+            <h2 class="mt-4 text-xl">{{ item.title }}</h2>
+            <div class="mt-4 flex justify-start text-gray-400 text-sm">
+              <p class="">
+                <font-awesome-icon icon="fa-regular fa-eye"></font-awesome-icon>
+                {{ item.views }}
+              </p>
+              <p class="ml-4">
+                <font-awesome-icon
+                  icon="fa-regular fa-thumbs-up"
+                ></font-awesome-icon>
+                {{ item.likes }}
+              </p>
+              <p class="ml-4">
+                <font-awesome-icon
+                  :icon="getIcon(item.type)"
+                ></font-awesome-icon>
+                {{ getTypeName(item.type) }}
+              </p>
+            </div>
+            <p class="mt-4 max-h-[48px] overflow-hidden overflow-ellipsis">
+              {{ item.preview }}...
             </p>
           </div>
-          <p class="mt-4 max-h-[48px] overflow-hidden overflow-ellipsis">
-            {{ item.preview }}
-          </p>
+          <div
+            class="itemPicture w-[60%] h-full p-4 bg-center bg-[100%,100%] bg-no-repeat transition-[background-size] duration-500 group-hover:bg-[120%,120%]"
+          ></div>
         </div>
-        <div
-          class="itemPicture w-[60%] h-full p-4 bg-center bg-[100%,100%] bg-no-repeat transition-[background-size] duration-500 group-hover:bg-[120%,120%]"
-        ></div>
       </div>
-    </div>
 
-    <div
-      class="flex justify-center animate__animated animate__fadeInUp"
-      v-if="articleGroupCount === 10 && articleLeft > 0"
-    >
-      <button class="draw-border" @click="nextGroup()">MORE</button>
+      <div
+        class="flex justify-center animate__animated animate__fadeInUp"
+        v-if="articleGroupCount === 10 && articleLeft > 0"
+      >
+        <button class="draw-border" @click="nextGroup()">MORE</button>
+      </div>
     </div>
   </div>
 </template>

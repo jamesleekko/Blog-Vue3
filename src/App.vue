@@ -27,7 +27,7 @@ onMounted(() => {
 <template>
   <div class="common-layout">
     <el-container>
-      <el-header>
+      <el-header >
         <MyHeaderVue></MyHeaderVue>
       </el-header>
       <el-main style="overflow-y: hidden!important;">

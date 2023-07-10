@@ -551,21 +551,70 @@ body {
   }
 }
 
-.v-note-wrapper{
-  background-color: #dddddd00!important;
-  border: none!important;
+.v-note-wrapper {
+  background-color: #dddddd00 !important;
+  border: none !important;
 
-  pre{
-    padding: 0!important;
-    .hljs{
-      padding: 16px!important;
+  pre {
+    padding: 0 !important;
+    .hljs {
+      padding: 16px !important;
       code {
-        font-size: 1rem!important;
+        font-size: 1rem !important;
       }
     }
   }
 }
 
-input, textarea{
-  outline: none!important;
+input,
+textarea {
+  outline: none !important;
+}
+
+@keyframes shrink {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.ani_shrink{
+  animation: shrink 1s ease-in-out;
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.ani_fadeInLeft{
+  animation: fadeInLeft 1s ease-in-out;
+}
+
+@keyframes bgZoom {
+  0% {
+    // background-size: 120%;
+    transform: scale(1.1);
+  }
+  100% {
+    // background-size: 100%;
+    transform: scale(1);
+  }
+}
+
+.ani_bgZoom{
+  animation: bgZoom 2s ease-in-out;
+}
+
+#banner{
+  position: fixed;
+  z-index: -1;
 }
