@@ -16,6 +16,14 @@ const articleTotal = ref(0);
 const currentPage = ref(1);
 const pageSize = ref(1);
 
+const bannerImg = new Image();
+bannerImg.src = "https://api.likepoems.com/img/bing";
+bannerImg.onload = function () {
+  const gallery = document.querySelector(".index-gallery");
+  gallery.style.backgroundImage = `url("${bannerImg.src}")`;
+  gallery.classList.add("ani_bgZoom");
+};
+
 //避免重复监听
 let scrollWatched = false;
 
@@ -148,47 +156,34 @@ const goArticle = (id) => {
   router.push(`/article?id=${id}`);
 };
 
-// const img = new Image();
-// img.onload = function () {
-//   const gallery = document.querySelector(".index-gallery");
-//   gallery.style.backgroundImage = `url("${img.src}")`;
-//   gallery.classList.add("ani_bgZoom");
-// };
-// onMounted(() => {
-//   watch(
-//     () => store.index_banner_url,
-//     (newVal, oldVal) => {
-//       if (newVal) {
-//         img.src = newVal;
-//       }
-//     }
-//   );
-// });
-function bannerLoaded() {
-  const gallery = document.querySelector("#banner");
-  console.log("gallery", gallery.classList);
-  setTimeout(() => {
-    gallery.classList.add("ani_bgZoom");
-  }, 0);
-}
+onMounted(() => {
+  // watch(
+  //   () => store.index_banner_url,
+  //   (newVal, oldVal) => {
+  //     if (newVal) {
+  //       bannerImg.src = newVal;
+  //     }
+  //   }
+  // );
+});
 </script>
 
 <template>
   <div>
     <div class="index-gallery">
-      <el-image
+      <!-- <el-image
         id="banner"
-        class="w-full h-full"
+        class="w-full h-full !fixed z-[-1]"
         :src="store.index_banner_url"
         fit="cover"
         @load="bannerLoaded"
-      />
+      /> -->
       <div class="center-con">
         <div class="title-big glitch" :data-text="slogan">{{ slogan }}</div>
       </div>
     </div>
 
-    <div>
+    <div class="bg-white pt-4">
       <div class="index-list max-w-[800px] mx-auto pb-10">
         <div
           class="article-item group flex h-[320px] justify-center items-center mt-10 rounded-xl bg-white overflow-hidden shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] animate__animated animate__fadeInUp cursor-pointer"
@@ -221,7 +216,7 @@ function bannerLoaded() {
               </p>
             </div>
             <p class="mt-4 max-h-[48px] overflow-hidden overflow-ellipsis">
-              {{ item.preview }}...
+              {{ item.preview }} ...
             </p>
           </div>
           <div

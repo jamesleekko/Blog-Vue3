@@ -139,7 +139,7 @@ if (route.query.id) {
 <template>
   <div class="article-con">
     <div
-      class="article-gallery relative m-[-20px] min-h-[200px] bg-fixed bg-cover bg-no-repeat bg-center"
+      class="article-gallery relative min-h-[200px] bg-fixed bg-cover bg-no-repeat bg-center"
       id="art-gallery"
     >
       <el-image :src="bannerSrc" fit="cover"></el-image>

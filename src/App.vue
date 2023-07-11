@@ -25,15 +25,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="common-layout">
-    <el-container>
-      <el-header >
-        <MyHeaderVue></MyHeaderVue>
-      </el-header>
-      <el-main style="overflow-y: hidden!important;">
-        <MyMainVue></MyMainVue>
-      </el-main>
-    </el-container>
+  <div class="">
+    <el-header>
+      <MyHeaderVue></MyHeaderVue>
+    </el-header>
+    <main style="overflow-y: hidden!important">
+      <MyMainVue></MyMainVue>
+    </main>
 
     <!-- <css-doodle id="doodle">
       :doodle { @grid: 1x20 / 100vmin; } @place-cell: center; width:
