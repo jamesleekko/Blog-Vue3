@@ -65,6 +65,12 @@ function addComment(comment) {
   return mAxios.post("/addComment", comment);
 }
 
+function getImage(id, title) {
+  return mAxios.get("/getImage", {
+    params: { id: id, title: title },
+  });
+}
+
 export {
   getArticleCategory,
   getBannerImageUrl,
@@ -76,4 +82,5 @@ export {
   getInfoByQQ,
   getCommentById,
   addComment,
+  getImage,
 };

@@ -8,11 +8,13 @@ import {
   setIndexBannerUrl,
   setCategoryBannerUrl,
   setArticleGroupByDate,
+  setIndexContactUrls,
 } from "~/assets/utils/commonFunc";
 
 const store = useGlobalStore();
 setArticleCategory();
 setIndexBannerUrl();
+setIndexContactUrls();
 setCategoryBannerUrl();
 setArticleGroupByDate();
 

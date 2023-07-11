@@ -24,6 +24,8 @@ bannerImg.onload = function () {
   gallery.classList.add("ani_bgZoom");
 };
 
+const proverb = ref("我不是一个好人，但我也不是一个坏人。");
+
 //避免重复监听
 let scrollWatched = false;
 
@@ -156,30 +158,49 @@ const goArticle = (id) => {
   router.push(`/article?id=${id}`);
 };
 
-onMounted(() => {
-  // watch(
-  //   () => store.index_banner_url,
-  //   (newVal, oldVal) => {
-  //     if (newVal) {
-  //       bannerImg.src = newVal;
-  //     }
-  //   }
-  // );
-});
+onMounted(() => {});
 </script>
 
 <template>
   <div>
     <div class="index-gallery">
-      <!-- <el-image
-        id="banner"
-        class="w-full h-full !fixed z-[-1]"
-        :src="store.index_banner_url"
-        fit="cover"
-        @load="bannerLoaded"
-      /> -->
       <div class="center-con">
-        <div class="title-big glitch" :data-text="slogan">{{ slogan }}</div>
+        <div
+          class="title-big glitch animate__animated animate__fadeInDown"
+          :data-text="slogan"
+        >
+          {{ slogan }}
+        </div>
+        <div
+          class="bg-[#00000080] rounded-md mt-8 p-4 w-[658px] mx-auto animate__animated animate__fadeInDown"
+        >
+          <p class="text-[#eaeadf] font-['Ubuntu,sans-serif']">
+            <font-awesome-icon icon="fa-solid fa-quote-left" class="text-2xl">
+            </font-awesome-icon>
+            {{ proverb }}
+            <font-awesome-icon
+              icon="fa-solid fa-quote-right"
+              class="text-2xl"
+            ></font-awesome-icon>
+          </p>
+          <div class="flex justify-center mt-4 gap-x-4">
+            <div>
+              <img class="w-6 h-6 cursor-pointer" :src="store.netease_url" />
+            </div>
+            <div>
+              <img class="w-6 h-6 cursor-pointer" :src="store.github_url" />
+            </div>
+            <div>
+              <img class="w-6 h-6 cursor-pointer" :src="store.qq_url" />
+            </div>
+            <div>
+              <img class="w-6 h-6 cursor-pointer" :src="store.bilibili_url" />
+            </div>
+            <div>
+              <img class="w-6 h-6 cursor-pointer" :src="store.wechat_url" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

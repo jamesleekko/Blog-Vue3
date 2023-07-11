@@ -15,6 +15,28 @@ export const useGlobalStore = defineStore("globalStore", () => {
     index_banner_url.value = url;
   }
 
+  //首页资源url
+  const wechat_url = ref("");
+  const qq_url = ref("");
+  const github_url = ref("");
+  const netease_url = ref("");
+  const bilibili_url = ref("");
+  function setWechatUrl(url) {
+    wechat_url.value = url;
+  }
+  function setQqUrl(url) {
+    qq_url.value = url;
+  }
+  function setGithubUrl(url) {
+    github_url.value = url;
+  }
+  function setNeteaseUrl(url) {
+    netease_url.value = url;
+  }
+  function setBilibiliUrl(url) {
+    bilibili_url.value = url;
+  }
+
   //归档banner图url
   const category_banner_url = ref("");
   function setCategoryBannerUrl(url) {
@@ -47,5 +69,15 @@ export const useGlobalStore = defineStore("globalStore", () => {
     category_banner_url,
     articleGroupByDate,
     setArticleGroupByDate,
+    wechat_url,
+    qq_url,
+    github_url,
+    netease_url,
+    bilibili_url,
+    setQqUrl,
+    setWechatUrl,
+    setGithubUrl,
+    setNeteaseUrl,
+    setBilibiliUrl,
   };
 });
