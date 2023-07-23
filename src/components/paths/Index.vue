@@ -24,7 +24,8 @@ bannerImg.onload = function () {
   gallery.classList.add("ani_bgZoom");
 };
 
-const proverb = ref("我不是一个好人，但我也不是一个坏人。");
+// const proverb = ref("我不是一个好人，但我也不是一个坏人。");
+const proverb = ref("Codiiiiiiiiiiiiiiiiiiiiiiiiiiiing。");
 
 //避免重复监听
 let scrollWatched = false;
@@ -204,7 +205,7 @@ onMounted(() => {});
       </div>
     </div>
 
-    <div class="bg-white pt-4">
+    <div class="bg-white py-4">
       <div class="index-list max-w-[800px] mx-auto pb-10">
         <div
           class="article-item group flex h-[320px] justify-center items-center mt-10 rounded-xl bg-white overflow-hidden shadow-[0_7px_29px_0_rgba(100,100,111,0.2)] animate__animated animate__fadeInUp cursor-pointer"
