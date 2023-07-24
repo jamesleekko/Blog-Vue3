@@ -1,17 +1,18 @@
 <script setup>
-import { ref } from 'vue'
-import { useDark, useToggle } from '@vueuse/core'
-
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
-
-const count = ref(1)
+import { useRouter, useRoute } from "vue-router";
+import { watch } from "vue";
+//监听路由跳转，滚动到顶部
+const route = useRoute();
+watch(
+  () => route.path,
+  (newVal, oldVal) => {
+    window.scrollTo(0, 0);
+  }
+);
 </script>
 
 <template>
-  <router-view>
-  </router-view>
+  <router-view> </router-view>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

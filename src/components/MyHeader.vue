@@ -27,8 +27,8 @@ function goCategory() {
   router.push("/category");
 }
 
-function goMessage() {
-  router.push("/message");
+function goMessageBoard() {
+  router.push("/message_board");
 }
 
 function goAboutMe() {
@@ -96,7 +96,7 @@ onMounted(() => {
       <div class="header-tabs-item" id="tab-category" @click="goCategory()">
         <font-awesome-icon icon="fa-solid fa-box-archive" /> 归档
       </div>
-      <div class="header-tabs-item" id="tab-message" @click="">
+      <div class="header-tabs-item" id="tab-message" @click="goMessageBoard()">
         <font-awesome-icon icon="fa-solid fa-wand-magic-sparkles" /> 留言板
       </div>
       <div class="header-tabs-item" id="tab-aboutme" @click="goAboutMe()">

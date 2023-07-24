@@ -3,7 +3,7 @@ import Index from '~/components/paths/Index.vue'
 import AboutMe from '~/components/paths/AboutMe.vue'
 import Category from '~/components/paths/Category.vue'
 import Article from '~/components/paths/Article.vue'
-import Message from '~/components/paths/Message.vue'
+import MessageBoard from '~/components/paths/MessageBoard.vue'
 
 const routes = [
   { path: '/', component: Index },
@@ -11,7 +11,7 @@ const routes = [
   { path: '/aboutme', component: AboutMe },
   { path: '/category', component: Category },
   { path: '/article', component: Article },
-  { path: '/message', component: Message },
+  { path: '/message_board', component: MessageBoard },
 ]
 
 const router = createRouter({
