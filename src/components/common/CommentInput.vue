@@ -2,6 +2,7 @@
 import { reactive, onMounted, ref, watch } from "vue";
 import { ElMessage } from "element-plus";
 import { getInfoByQQ } from "~/assets/plugins/axios/http";
+import userAvatar from "~/assets/images/user.svg"
 
 const props = defineProps({
   replyId: { type: Number, default: null },
@@ -61,7 +62,7 @@ const getAvatarUrl = () => {
   if (commentContent.avatar) {
     return commentContent.avatar;
   } else {
-    return "/src/assets/images/user.svg";
+    return userAvatar;
   }
 };
 </script>
@@ -100,7 +101,10 @@ const getAvatarUrl = () => {
         placeholder="个人站点"
         v-model="commentContent.website"
       />
-      <button class="comments-commit bg-[#ffa619] hover:bg-[#ff9c00] px-4 py-1 text-1 text-white rounded-sm" @click="commitComment(commentContent)">
+      <button
+        class="comments-commit bg-[#ffa619] hover:bg-[#ff9c00] px-4 py-1 text-1 text-white rounded-sm"
+        @click="commitComment(commentContent)"
+      >
         提交
       </button>
     </div>

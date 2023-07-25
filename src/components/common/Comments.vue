@@ -4,6 +4,7 @@ import { addComment } from "~/assets/plugins/axios/http";
 import CommentInput from "~/components/common/CommentInput.vue";
 import { ElMessage } from "element-plus";
 import moment from "moment";
+import userAvatar from "~/assets/images/user.svg"
 
 const props = defineProps({
   articleContent: {
@@ -89,7 +90,7 @@ const getAvatarUrl = (item) => {
   if (item.avatar_url) {
     return item.avatar_url;
   } else {
-    return "/src/assets/images/user.svg";
+    return userAvatar;
   }
 };
 

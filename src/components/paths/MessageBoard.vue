@@ -1,8 +1,7 @@
 <script setup>
 import { useRouter, useRoute } from "vue-router";
 import { watch } from "vue";
-
-const banner_url = "/src/assets/images/message-banner.jpg";
+import banner_url from "~/assets/images/message-banner.jpg"
 
 </script>
 
