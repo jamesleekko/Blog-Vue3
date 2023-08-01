@@ -168,7 +168,7 @@ $my-purple: #8800ff;
 
 .el-header {
   position: fixed;
-  z-index: 9999;
+  z-index: 1;
 }
 
 .header-con {
@@ -626,4 +626,8 @@ textarea {
 #banner {
   // position: fixed;
   // z-index: -1;
+}
+
+.v-note-wrapper{
+  z-index: 0!important;
 }

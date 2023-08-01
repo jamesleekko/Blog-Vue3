@@ -185,21 +185,38 @@ onMounted(() => {});
             ></font-awesome-icon>
           </p>
           <div class="flex justify-center mt-4 gap-x-4">
-            <div>
-              <img class="w-6 h-6 cursor-pointer" :src="store.netease_url" />
-            </div>
-            <div>
-              <img class="w-6 h-6 cursor-pointer" :src="store.github_url" />
-            </div>
-            <div>
-              <img class="w-6 h-6 cursor-pointer" :src="store.qq_url" />
-            </div>
-            <div>
-              <img class="w-6 h-6 cursor-pointer" :src="store.bilibili_url" />
-            </div>
-            <div>
-              <img class="w-6 h-6 cursor-pointer" :src="store.wechat_url" />
-            </div>
+            <el-tooltip effect="dark" content="网易云音乐" placement="bottom">
+              <a href="https://music.163.com/#/user/home?id=90431140">
+                <img class="w-6 h-6 cursor-pointer" :src="store.netease_url" />
+              </a>
+            </el-tooltip>
+            <el-tooltip effect="dark" content="Github" placement="bottom">
+              <a href="https://github.com/jamesleekko/">
+                <img class="w-6 h-6 cursor-pointer" :src="store.github_url" />
+              </a>
+            </el-tooltip>
+            <el-tooltip effect="dark" content="腾讯QQ" placement="bottom">
+              <a
+                href="http://wpa.qq.com/msgrd?v=3&uin=736082263&site=qq&menu=yes"
+              >
+                <img class="w-6 h-6 cursor-pointer" :src="store.qq_url" />
+              </a>
+            </el-tooltip>
+
+            <el-tooltip effect="dark" content="哔哩哔哩" placement="bottom">
+              <a href="https://space.bilibili.com/23181961">
+                <img class="w-6 h-6 cursor-pointer" :src="store.bilibili_url" />
+              </a>
+            </el-tooltip>
+
+            <el-tooltip effect="dark" placement="bottom">
+              <template #content>
+                <p>微信<br/>暂未开放</p>
+              </template>
+              <a>
+                <img class="w-6 h-6 cursor-pointer" :src="store.wechat_url" />
+              </a>
+            </el-tooltip>
           </div>
         </div>
       </div>

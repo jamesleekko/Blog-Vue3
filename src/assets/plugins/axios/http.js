@@ -56,9 +56,9 @@ function getInfoByQQ(qq) {
   return mAxios.get("/qq", { params: { qq: qq } });
 }
 
-function getCommentById(id, page, size) {
+function getCommentById(id, page, size, isMessage = false) {
   return mAxios.get("/getComments", {
-    params: { id: id, page: page, size: size },
+    params: { id: id, page: page, size: size, isMessage: isMessage },
   });
 }
 

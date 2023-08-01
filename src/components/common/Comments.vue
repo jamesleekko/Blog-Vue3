@@ -4,16 +4,12 @@ import { addComment } from "~/assets/plugins/axios/http";
 import CommentInput from "~/components/common/CommentInput.vue";
 import { ElMessage } from "element-plus";
 import moment from "moment";
-import userAvatar from "~/assets/images/user.svg"
+import userAvatar from "~/assets/images/user.svg";
 
 const props = defineProps({
   articleContent: {
     type: Object,
     default: () => {},
-  },
-  article_id: {
-    type: Number,
-    default: () => null,
   },
   isSub: {
     type: Boolean,
@@ -45,10 +41,8 @@ watch(
 
 const emit = defineEmits(["commitSuccess"]);
 const inputShowList = ref([]);
-const showReplyInput = ref(false);
 
 const commitComment = (commentContent) => {
-  console.log("get comment", commentContent);
   const date = new Date();
   //格式化时间，按照yyyy-MM-dd hh:mm:ss的格式输出
   const formatDate =
@@ -64,7 +58,9 @@ const commitComment = (commentContent) => {
     ":" +
     date.getSeconds();
   commentContent.time = formatDate;
-  commentContent.article_id = props.articleContent.id;
+  commentContent.article_id = props.articleContent
+    ? props.articleContent.id
+    : null;
 
   addComment(commentContent).then((res) => {
     if (res.data.success) {
@@ -97,16 +93,18 @@ const getAvatarUrl = (item) => {
 const switchReply = (index) => {
   inputShowList.value[index] = !inputShowList.value[index];
 };
-
 </script>
 
 <template>
   <div class="mt-10">
     <div v-if="!isSub">
       <p class="text-gray-500">
-        Comments<span class="">&nbsp;|&nbsp;</span
+        {{ props.articleContent ? "Comments" : "Messages"
+        }}<span class="">&nbsp;|&nbsp;</span
         ><span class="text-gray-400"
-          >{{ commentTotal }}条评论</span
+          >{{ commentTotal }}条{{
+            props.articleContent ? "评论" : "留言"
+          }}</span
         >
       </p>
       <CommentInput @commit="commitComment"></CommentInput>
@@ -125,11 +123,14 @@ const switchReply = (index) => {
           ></el-avatar>
           <div class="inline-block ml-2 align-top">
             <h4 class="text-[#6812b3] text-base">{{ item.name }}</h4>
-            <p class="text-gray-400 text-xs mt-1">发布于 {{ moment(item.time).format("YYYY-MM-DD hh:mm:ss") }}</p>
+            <p class="text-gray-400 text-xs mt-1">
+              发布于 {{ moment(item.time).format("YYYY-MM-DD hh:mm:ss") }}
+            </p>
           </div>
           <div v-if="isSub" class="mt-2">
             <p class="bg-gray-100 p-2 rounded-[4px]">
-              回复：&nbsp;<span>{{ item.replyTarget.name }}</span>&nbsp;&nbsp;&nbsp;"<span
+              回复：&nbsp;<span>{{ item.replyTarget.name }}</span
+              >&nbsp;&nbsp;&nbsp;"<span
                 class="max-w-[400px] overflow-ellipsis whitespace-nowrap overflow-hidden inline-block align-top"
                 >{{ item.replyTarget.content }}</span
               >"

@@ -24,8 +24,6 @@ const mainCommentTotal = ref(0);
 const mPage = ref(1);
 const mSize = ref(10);
 
-const md = ref(null);
-
 const getCommentList = (id, page, size) => {
   getCommentById(id, page, size).then((res) => {
     if (res.data.success) {
@@ -137,7 +135,7 @@ if (route.query.id) {
 </script>
 
 <template>
-  <div class="article-con">
+  <div class="article-con pb-8">
     <div
       class="article-gallery relative min-h-[200px] bg-fixed bg-cover bg-no-repeat bg-center"
       id="art-gallery"
@@ -211,7 +209,7 @@ if (route.query.id) {
           class="mt-8 justify-center"
           :page-size="mSize"
           :total="mainCommentTotal"
-          :hide-on-single-page="true"
+          :hide-on-single-page="false"
           background
           layout="prev, pager, next"
           @current-change="handleCurrentChange"
