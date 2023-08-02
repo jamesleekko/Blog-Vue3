@@ -115,6 +115,7 @@ const getTypeName = (type) => {
   return store.categoryList.find((item) => item.id === type).name;
 };
 
+const scrollDis = ref(0)
 const watchScroll = () => {
   let oneHeight;
   try {
@@ -138,6 +139,7 @@ const watchScroll = () => {
   window.addEventListener("scroll", () => {
     const listDoms = document.querySelectorAll(".article-item");
     const scrollTop = document.documentElement.scrollTop;
+    scrollDis.value = scrollTop;
     if (
       scrollTop + windowHeight >
         listRect.top -
@@ -153,6 +155,15 @@ const watchScroll = () => {
     }
   });
   scrollWatched = true;
+};
+
+const scrollDownGallery = () => {
+  const gallery = document.querySelector(".index-gallery");
+  const galleryHeight = gallery.offsetHeight;
+  window.scrollTo({
+    top: galleryHeight,
+    behavior: "smooth",
+  });
 };
 
 const goArticle = (id) => {
@@ -219,6 +230,10 @@ onMounted(() => {});
             </el-tooltip>
           </div>
         </div>
+      </div>
+
+      <div v-if="scrollDis == 0" class="absolute bottom-0 px-4 py-2 left-1/2 -translate-x-1/2 text-white text-2xl cursor-pointer" @click="scrollDownGallery">
+        <font-awesome-icon icon="fa-solid fa-chevron-down" class="animate-bounce"></font-awesome-icon>
       </div>
     </div>
 

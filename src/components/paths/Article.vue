@@ -137,22 +137,22 @@ if (route.query.id) {
 <template>
   <div class="article-con pb-8">
     <div
-      class="article-gallery relative min-h-[200px] bg-fixed bg-cover bg-no-repeat bg-center"
+      class="article-gallery relative min-h-[400px] bg-fixed bg-cover bg-no-repeat bg-center"
       id="art-gallery"
     >
-      <el-image :src="bannerSrc" fit="cover"></el-image>
+      <el-image :src="bannerSrc" fit="cover" class="w-full"></el-image>
       <p
-        class="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] text-white text-4xl"
+        class="text-shadowed absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] text-white text-4xl font-bold"
       >
         {{ articleContent.title }}
       </p>
       <div
-        class="absolute left-[50%] top-[calc(50%+5rem)] translate-x-[-50%] translate-y-[-50%]"
+        class="text-shadowed text-slate-200 absolute left-[50%] top-[calc(50%+5rem)] translate-x-[-50%] translate-y-[-50%]"
       >
         最后编辑于 {{ articleContent.time }}
       </div>
       <div
-        class="absolute left-[50%] top-[calc(50%+3rem)] translate-x-[-50%] translate-y-[-50%]"
+        class="text-shadowed text-slate-200 absolute left-[50%] top-[calc(50%+3rem)] translate-x-[-50%] translate-y-[-50%]"
       >
         <font-awesome-icon icon="fa-regular fa-eye" />
         {{ articleContent.views ? articleContent.views : 0 }}

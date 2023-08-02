@@ -30,6 +30,8 @@ import {
   faThumbsUp,
   faQuoteLeft,
   faQuoteRight,
+  faAnglesDown,
+  faChevronDown
 } from "@fortawesome/free-solid-svg-icons";
 /* import regular icons */
 import {
@@ -55,7 +57,9 @@ library.add(
   farEye,
   farThumbsUp,
   faQuoteLeft,
-  faQuoteRight
+  faQuoteRight,
+  faAnglesDown,
+  faChevronDown,
 );
 
 // import * as ElementPlusIconsVue from '@element-plus/icons-vue'

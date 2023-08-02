@@ -2,6 +2,7 @@
 
 $base-color: #ffa619;
 $base-hover: #ff9c00;
+$base-purple: #8800ff;
 
 $--colors: (
   "primary": (
@@ -24,8 +25,6 @@ $--colors: (
   ),
 );
 
-$my-purple: #8800ff;
-
 @forward "element-plus/theme-chalk/src/common/var.scss" with (
   $colors: (
     "primary": (
@@ -36,6 +35,12 @@ $my-purple: #8800ff;
     "padding": 0,
   )
 );
+
+#app {
+  --base-color: #ffa619;
+  --base-hover: #ff9c00;
+  --base-purple: #8800ff;
+}
 
 @mixin iconInBar() {
   .el-switch__inner {
@@ -70,7 +75,7 @@ $my-purple: #8800ff;
   bottom: 0;
   left: 0;
   height: 3px;
-  background-color: $my-purple;
+  background-color: $base-purple;
 }
 
 .glitch {
@@ -628,6 +633,11 @@ textarea {
   // z-index: -1;
 }
 
-.v-note-wrapper{
-  z-index: 0!important;
+.v-note-wrapper {
+  z-index: 0 !important;
+}
+
+.text-shadowed{
+  text-shadow: rgba(0, 0, 0, 0.5) 0 0 2px;;
+  // text-shadow: 0 0 3px #000, 0 1px 1px #000, 0 -1px 1px #000, 1px 0 1px #000, -1px 0 1px #000;
 }
