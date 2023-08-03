@@ -8,7 +8,6 @@ import { inStableHeaderPaths } from "~/assets/utils/exPaths";
 
 const headerHeight = 54;
 const { proxy } = getCurrentInstance();
-// const toggleDark = useToggle(isDark)
 const router = useRouter();
 const route = useRoute();
 const store = useGlobalStore();

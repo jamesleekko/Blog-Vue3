@@ -3,6 +3,7 @@ import { onMounted, ref } from "vue";
 import MyHeaderVue from "~/components/MyHeader.vue";
 import MyMainVue from "~/components/MyMain.vue";
 import { useGlobalStore } from "./assets/plugins/pinia/global-store";
+import { useDark, useToggle } from "@vueuse/core";
 import {
   setArticleCategory,
   setIndexBannerUrl,
@@ -10,6 +11,14 @@ import {
   setArticleGroupByDate,
   setIndexContactUrls,
 } from "~/assets/utils/commonFunc";
+
+// const isDark = useDark();
+// const isDarkRef = ref(isDark);
+// console.log(isDark, isDarkRef)
+// if(isDarkRef){
+//   console.log("isDarkRef",isDarkRef)
+//   useToggle(isDarkRef);
+// }
 
 const store = useGlobalStore();
 setArticleCategory();
@@ -23,6 +32,13 @@ onMounted(() => {
   // document.addEventListener("click", function (e) {
   //   doodle.update();
   // });
+
+  //锁定亮色主题
+  const isDark = useDark();
+  const toggleDark = useToggle(isDark);
+  if (isDark.value) {
+    toggleDark();
+  }
 });
 </script>
 
@@ -31,7 +47,7 @@ onMounted(() => {
     <el-header>
       <MyHeaderVue></MyHeaderVue>
     </el-header>
-    <main style="overflow-y: hidden!important">
+    <main style="overflow-y: hidden !important">
       <MyMainVue></MyMainVue>
     </main>
 

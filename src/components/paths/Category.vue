@@ -1,6 +1,8 @@
 <template>
   <div class="cate-con mt-[54px] overflow-hidden">
-    <div class="min-h-[200] relative mb-0 p-8 sub-gallery animate__animated animate__pulse">
+    <div
+      class="min-h-[200] relative mb-0 p-8 sub-gallery animate__animated animate__pulse"
+    >
       <el-image class="w-full" :src="store.category_banner_url" fit="fill" />
       <div class="center-con">
         <p class="banner-title">文章归档</p>
@@ -11,7 +13,7 @@
         <div
           class="art-cat-item animate__animated animate__fadeInUp"
           v-for="item in store.categoryList"
-          @click=""
+          @click="setCategory(item.id)"
         >
           <font-awesome-icon :icon="getCateIcon(item)" :id="'cat-' + item.id" />
           {{ item.name }}
@@ -37,6 +39,7 @@ import { ref, onMounted, getCurrentInstance } from "vue";
 import { useGlobalStore } from "~/assets/plugins/pinia/global-store";
 import MyDrawer from "~/components/common/MyDrawer.vue";
 import { useRouter } from "vue-router";
+import { setArticleGroupByDate } from "~/assets/utils/commonFunc";
 
 const store = useGlobalStore();
 const router = useRouter();
@@ -65,6 +68,10 @@ function setAnimations() {
 
 function goArticle(item) {
   router.push("/article?id=" + item.id);
+}
+
+function setCategory(id) {
+  setArticleGroupByDate(id);
 }
 
 onMounted(() => {

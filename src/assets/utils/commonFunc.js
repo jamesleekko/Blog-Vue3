@@ -54,9 +54,9 @@ const setCategoryBannerUrl = () => {
   });
 };
 
-const setArticleGroupByDate = () => {
+const setArticleGroupByDate = (type = 0) => {
   const store = useGlobalStore();
-  getArticleGroup(0).then((res) => {
+  getArticleGroup(type).then((res) => {
     store.setArticleGroupByDate(res.data.data);
   });
 };
