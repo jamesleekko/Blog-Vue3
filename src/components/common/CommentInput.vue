@@ -78,7 +78,7 @@ const getAvatarUrl = () => {
     >
     </textarea>
     <div class="flex items-center justify-between mt-4">
-      <el-avatar size="large" class="" :src="getAvatarUrl()"></el-avatar>
+      <el-avatar size="large" class="!bg-white" :src="getAvatarUrl()"></el-avatar>
       <el-tooltip
         effect="dark"
         content="输入QQ号自动拉取信息"
