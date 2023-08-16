@@ -43,7 +43,8 @@ const addArticles = (page, size) => {
     getArticleList(null, null, page, size).then(async (res) => {
       if (res.data.success) {
         articleGroupCount.value++;
-        articleList.value = articleList.value.concat(res.data.data.list);
+        const newItem = parsePreview(res.data.data.list[0]);
+        articleList.value = articleList.value.concat(newItem);
         articleTotal.value = res.data.data.total;
         await nextTick();
 
@@ -115,7 +116,7 @@ const getTypeName = (type) => {
   return store.categoryList.find((item) => item.id === type).name;
 };
 
-const scrollDis = ref(0)
+const scrollDis = ref(0);
 const watchScroll = () => {
   let oneHeight;
   try {
@@ -164,6 +165,12 @@ const scrollDownGallery = () => {
     top: galleryHeight,
     behavior: "smooth",
   });
+};
+
+const parsePreview = (articleItem) => {
+  articleItem.preview = articleItem.preview.replaceAll("\n", "").replaceAll(/[`]+/g, "").replaceAll(/[#]+/g, "");
+  // console.log(articleItem.preview)
+  return articleItem;
 };
 
 const goArticle = (id) => {
@@ -222,7 +229,7 @@ onMounted(() => {});
 
             <el-tooltip effect="dark" placement="bottom">
               <template #content>
-                <p>微信<br/>暂未开放</p>
+                <p>微信<br />暂未开放</p>
               </template>
               <a>
                 <img class="w-6 h-6 cursor-pointer" :src="store.wechat_url" />
@@ -232,8 +239,15 @@ onMounted(() => {});
         </div>
       </div>
 
-      <div v-if="scrollDis == 0" class="absolute bottom-0 px-4 py-2 left-1/2 -translate-x-1/2 text-white text-2xl cursor-pointer" @click="scrollDownGallery">
-        <font-awesome-icon icon="fa-solid fa-chevron-down" class="animate-bounce"></font-awesome-icon>
+      <div
+        v-if="scrollDis == 0"
+        class="absolute bottom-0 px-4 py-2 left-1/2 -translate-x-1/2 text-white text-2xl cursor-pointer"
+        @click="scrollDownGallery"
+      >
+        <font-awesome-icon
+          icon="fa-solid fa-chevron-down"
+          class="animate-bounce"
+        ></font-awesome-icon>
       </div>
     </div>
 
@@ -269,8 +283,8 @@ onMounted(() => {});
                 {{ getTypeName(item.type) }}
               </p>
             </div>
-            <p class="mt-4 max-h-[48px] overflow-hidden overflow-ellipsis">
-              {{ item.preview }} ...
+            <p class="mt-4 index-preview-text">
+              {{ item.preview }}
             </p>
           </div>
           <div
