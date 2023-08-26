@@ -98,9 +98,9 @@ onMounted(() => {
       <div class="header-tabs-item" id="tab-message" @click="goMessageBoard()">
         <font-awesome-icon icon="fa-solid fa-wand-magic-sparkles" /> 留言板
       </div>
-      <div class="header-tabs-item" id="tab-aboutme" @click="goAboutMe()">
+      <!-- <div class="header-tabs-item" id="tab-aboutme" @click="goAboutMe()">
         <font-awesome-icon icon="fa-solid fa-user-astronaut" /> 关于
-      </div>
+      </div> -->
     </div>
 
     <div class="header-right">
