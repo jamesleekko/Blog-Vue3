@@ -169,7 +169,6 @@ const scrollDownGallery = () => {
 
 const parsePreview = (articleItem) => {
   articleItem.preview = articleItem.preview.replaceAll("\n", "").replaceAll(/[`]+/g, "").replaceAll(/[#]+/g, "");
-  // console.log(articleItem.preview)
   return articleItem;
 };
 

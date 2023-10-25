@@ -173,7 +173,7 @@ if (route.query.id) {
           :editable="false"
           :previewBackground="'#ffffff00'"
           defaultOpen="preview"
-          codeStyle="stackoverflow-dark"
+          codeStyle="nord"
         ></mavon-editor>
 
         <div class="option-con flex items-center justify-center flex-wrap mt-8">

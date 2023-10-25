@@ -66,13 +66,13 @@ function setAnimations() {
     proxy.$stopAnimate(".fa-wand-magic-sparkles", "tada");
   });
 
-  const aboutme = document.querySelector("#tab-aboutme");
-  aboutme.addEventListener("mouseover", () => {
-    proxy.$animate(".fa-user-astronaut", "heartBeat");
-  });
-  aboutme.addEventListener("mouseout", () => {
-    proxy.$stopAnimate(".fa-user-astronaut", "heartBeat");
-  });
+  // const aboutme = document.querySelector("#tab-aboutme");
+  // aboutme.addEventListener("mouseover", () => {
+  //   proxy.$animate(".fa-user-astronaut", "heartBeat");
+  // });
+  // aboutme.addEventListener("mouseout", () => {
+  //   proxy.$stopAnimate(".fa-user-astronaut", "heartBeat");
+  // });
 }
 
 onMounted(() => {

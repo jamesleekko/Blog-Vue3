@@ -43,15 +43,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="">
-    <el-header class="px-0">
-      <MyHeaderVue></MyHeaderVue>
-    </el-header>
-    <main style="overflow-y: hidden !important">
-      <MyMainVue></MyMainVue>
-    </main>
+  <el-header class="!px-0">
+    <MyHeaderVue></MyHeaderVue>
+  </el-header>
+  <main style="overflow-y: hidden !important">
+    <MyMainVue></MyMainVue>
+  </main>
 
-    <!-- <css-doodle id="doodle">
+  <!-- <css-doodle id="doodle">
       :doodle { @grid: 1x20 / 100vmin; } @place-cell: center; width:
       @rand(60vmin, 100vmin); height: @rand(60vmin, 100vmin); transform:
       translate(@rand(-120%, 120%), @rand(-80%, 80%)) scale(                                                                      @rand(.8, 2.8))
@@ -66,7 +65,6 @@ onMounted(() => {
       linear alternate; @keyframes colorChange { 100% { left: 0; top: 0; filter:
       hue-rotate(360deg); } }
     </css-doodle> -->
-  </div>
 </template>
 
 <style lang="scss">
