@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5173/api";
+//区分开发环境和生产环境
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+// const BASE_URL = "http://localhost:5173/api";
 // const BASE_URL = "http://124.221.75.170:3000";
 
 const mAxios = axios.create({
